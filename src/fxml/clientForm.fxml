@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ClientFormController">
+   <top>
+      <Label text="Анкета клиента" textAlignment="JUSTIFY" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="24.0" />
+         </font>
+         <BorderPane.margin>
+            <Insets bottom="5.0" top="5.0" />
+         </BorderPane.margin>
+      </Label>
+   </top>
+   <center>
+      <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" pannable="true" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </center>
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" onAction="#delete" prefHeight="30.0" prefWidth="80.0" text="Удалить">
+               <HBox.margin>
+                  <Insets right="40.0" />
+               </HBox.margin></Button>
+            <Button fx:id="save" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#saveChanges" prefHeight="30.0" prefWidth="80.0" text="Добавить" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets left="40.0" />
+               </HBox.margin></Button>
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>
