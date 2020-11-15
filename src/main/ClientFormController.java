@@ -4,25 +4,35 @@ import choices.ClientChoices;
 import choices.FieldControl;
 import database.ClientTable;
 import implementation.Client;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.InputMethodEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
+import javafx.util.converter.IntegerStringConverter;
 import properties.Current;
 import properties.Properties;
 
+import javax.sound.midi.Soundbank;
 import java.io.IOException;
+import java.text.NumberFormat;
+import java.text.ParsePosition;
 import java.util.*;
+import java.util.function.UnaryOperator;
 
 
 public class ClientFormController {
@@ -59,11 +69,13 @@ public class ClientFormController {
             if (field.getChoices() == null) {
 
                 if (Arrays.asList("age", "number_children", "number_minor_children").contains(field.getName())) {
-                    Spinner<Integer> spinnerInteger = new Spinner<>(0, 100, 0);
+                    Spinner<Integer> spinnerInteger = new Spinner<>();
                     spinnerInteger.setEditable(true);
                     gridPane.addRow(i++, label, spinnerInteger);
                     viewRightColumn(spinnerInteger);
                     field.setControl(spinnerInteger);
+                    formatSpinner(spinnerInteger); //запрет на ввод символов
+
                 } else if (Arrays.asList("duration_of_use", "duration_of_alcohol", "duration_of_remission").contains(field.getName())) {
                     Spinner<Double> spinnerDouble = new Spinner<>(0.0, 100.0, 0.0, 0.5);
                     gridPane.addRow(i++, label, spinnerDouble);
@@ -96,6 +108,28 @@ public class ClientFormController {
         //растягивание по горизонтали
         control.setMaxWidth(Double.MAX_VALUE);
         GridPane.setHgrow(control, Priority.ALWAYS);
+    }
+
+    private void formatSpinner(Spinner<Integer> spinnerInteger) {
+        NumberFormat format = NumberFormat.getIntegerInstance();
+        UnaryOperator<TextFormatter.Change> filter = c -> {
+            if (c.isContentChange()) {
+                ParsePosition parsePosition = new ParsePosition(0);
+                format.parse(c.getControlNewText(), parsePosition);
+                if (parsePosition.getIndex() == 0 ||
+                        parsePosition.getIndex() < c.getControlNewText().length()) {
+                    // reject parsing the complete text failed
+                    return null;
+                }
+            }
+            return c;
+        };
+        TextFormatter<Integer> priceFormatter = new TextFormatter<Integer>(
+                new IntegerStringConverter(), 0, filter);
+
+        spinnerInteger.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(
+                0, 100, Integer.parseInt("0")));
+        spinnerInteger.getEditor().setTextFormatter(priceFormatter);
     }
 
     private void setFields() {
