@@ -50,11 +50,11 @@ public class GeneralController extends MenuBarMethods {
     }
 
     @FXML
-    public void clickRow(MouseEvent mouseEvent) {
+    public void clickRow(MouseEvent mouseEvent) throws IOException {
         if (mouseEvent.getClickCount() == 2) //Проверка на двойной клик
         {
             Current.CLIENT = table.getSelectionModel().getSelectedItem();
-            System.out.println(Current.CLIENT);
+            super.stage(menu,"../fxml/client.fxml","Работа с клиентом");
         }
     }
 
@@ -93,6 +93,7 @@ public class GeneralController extends MenuBarMethods {
 
     @FXML
     private void toClient(ActionEvent actionEvent) throws IOException {
+        Current.CLIENT=null;
         super.stage(menu,"../fxml/client.fxml","Работа с клиентом");
     }
 }

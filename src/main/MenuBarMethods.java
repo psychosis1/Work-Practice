@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import properties.Current;
 import properties.Properties;
 
+import java.io.File;
 import java.io.IOException;
 
 public class MenuBarMethods {
@@ -28,6 +29,11 @@ public class MenuBarMethods {
 
     void logout(MenuBar menu) throws IOException {
         Current.USER = null; //удаление текущего пользователя
+        File file = new File("user.dat");
+        if(file.delete())
+            System.out.println("Файл успешно удален");
+        else
+            System.out.println("Не удалось удалить файл");
         stage(menu, "../fxml/login.fxml", "Авторизация");
     }
 }

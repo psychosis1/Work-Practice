@@ -24,10 +24,12 @@ import properties.Properties;
 import java.io.IOException;
 import java.util.*;
 
+import static main.Main.toGeneral;
+
 
 public class ClientFormController {
 
-    private List<FieldControl> fields = new ArrayList<>();
+    private final List<FieldControl> fields = new ArrayList<>();
 
     private final GridPane gridPane = new GridPane();
 
@@ -86,6 +88,9 @@ public class ClientFormController {
             gridPane.getRowConstraints().add(new RowConstraints(40));
             GridPane.setMargin(label, new Insets(20));
         }
+
+        if (Current.CLIENT != null)
+            clientNotNull(); //если клиент существует
     }
 
     private void viewRightColumn(Control control) {
@@ -141,6 +146,27 @@ public class ClientFormController {
 
     }
 
+    private void clientNotNull() {
+        for (FieldControl field : fields) {
+            if (field.getChoices() == null) {
+                if (Arrays.asList("age", "number_children", "number_minor_children").contains(field.getName())) {
+                    Spinner<Integer> spinnerInteger = (Spinner<Integer>) field.getControl();
+                    spinnerInteger.getValueFactory().setValue((int) Current.CLIENT.getField(field.getName()));
+                } else if (Arrays.asList("duration_of_use", "duration_of_alcohol", "duration_of_remission").contains(field.getName())) {
+                    Spinner<Double> spinnerDouble = (Spinner<Double>) field.getControl();
+                    spinnerDouble.getValueFactory().setValue((double) Current.CLIENT.getField(field.getName()));
+                } else {
+                    TextField textField = (TextField) field.getControl();
+                    textField.setText((String) Current.CLIENT.getField(field.getName()));
+                }
+            } else {
+                ComboBox<String> comboBox = (ComboBox<String>) field.getControl();
+                comboBox.getSelectionModel().select((int) Current.CLIENT.getField(field.getName()));
+            }
+        }
+        save.setText("Изменить");
+    }
+
     @FXML
     private void saveChanges(ActionEvent actionEvent) {
         if (save.getText().equals("Добавить")) {
@@ -179,15 +205,7 @@ public class ClientFormController {
     @FXML
     private void delete(ActionEvent actionEvent) throws IOException {
         if (new ClientTable().delete() == 0) {
-            Stage stage = (Stage) save.getScene().getWindow();
-            stage.close();
-            Parent root = FXMLLoader.load(getClass().getResource("../fxml/general.fxml"));
-            stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.getIcons().add(Properties.ICON);
-            stage.setTitle("Главная страница");
-            stage.setScene(new Scene(root));
-            stage.show();
+            toGeneral((Stage) save.getScene().getWindow(), getClass());
         }
     }
 }

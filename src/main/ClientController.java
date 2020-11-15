@@ -8,6 +8,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import properties.Current;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -60,8 +61,10 @@ public class ClientController extends MenuBarMethods {
 
     @FXML
     private void toTestGAGE(MouseEvent mouseEvent) throws IOException {
-        setColorForLabel(mouseEvent);
-        updateWorkArea(FXMLLoader.load(getClass().getResource("../fxml/testGAGE.fxml")));
+        if (Current.CLIENT!=null){
+            setColorForLabel(mouseEvent);
+            updateWorkArea(FXMLLoader.load(getClass().getResource("../fxml/testGAGE.fxml")));
+        }
     }
 
     @FXML
