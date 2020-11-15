@@ -24,8 +24,6 @@ import properties.Properties;
 import java.io.IOException;
 import java.util.*;
 
-import static main.Main.toGeneral;
-
 
 public class ClientFormController {
 
@@ -205,7 +203,7 @@ public class ClientFormController {
     @FXML
     private void delete(ActionEvent actionEvent) throws IOException {
         if (new ClientTable().delete() == 0) {
-            toGeneral((Stage) save.getScene().getWindow(), getClass());
+            Application.stage(getClass(), (Stage) save.getScene().getWindow(), "../fxml/general.fxml", "Главная страница");
         }
     }
 }

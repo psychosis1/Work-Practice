@@ -18,8 +18,6 @@ import properties.Properties;
 
 import java.io.IOException;
 
-import static main.Main.toGeneral;
-
 public class LoginController {
     @FXML
     private TextField username;
@@ -31,7 +29,7 @@ public class LoginController {
     @FXML
     private void login(ActionEvent actionEvent) throws IOException {
         if (new UserTable().selectUser(username.getText(), password.getText()) == 0) {
-            toGeneral((Stage)enter.getScene().getWindow(),getClass());
+            Application.stage(getClass(),(Stage)enter.getScene().getWindow(),"../fxml/general.fxml","Главная страница");
             saveUser();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);

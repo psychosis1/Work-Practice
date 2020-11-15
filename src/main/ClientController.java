@@ -8,6 +8,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import properties.Current;
 
 import java.io.IOException;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ClientController extends MenuBarMethods {
+public class ClientController {
     @FXML
     private MenuBar menu;
     @FXML
@@ -69,12 +70,12 @@ public class ClientController extends MenuBarMethods {
 
     @FXML
     private void logout(ActionEvent actionEvent) throws IOException {
-        super.logout(menu);
+        Application.logout(getClass(),(Stage) menu.getScene().getWindow());
     }
 
     @FXML
     private void toHome(ActionEvent actionEvent) throws IOException {
-        super.stage(menu,"../fxml/general.fxml","Главная страница");
+        Application.stage(getClass(),(Stage) menu.getScene().getWindow(),"../fxml/general.fxml","Главная страница");
     }
 
 }

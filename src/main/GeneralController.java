@@ -9,23 +9,18 @@ import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import properties.Current;
-import properties.Properties;
 
 import java.io.IOException;
 
-public class GeneralController extends MenuBarMethods {
+public class GeneralController {
     @FXML
     private MenuBar menu;
 
@@ -54,7 +49,7 @@ public class GeneralController extends MenuBarMethods {
         if (mouseEvent.getClickCount() == 2) //Проверка на двойной клик
         {
             Current.CLIENT = table.getSelectionModel().getSelectedItem();
-            super.stage(menu,"../fxml/client.fxml","Работа с клиентом");
+            Application.stage(getClass(), (Stage) menu.getScene().getWindow(), "../fxml/client.fxml", "Работа с клиентом");
         }
     }
 
@@ -78,7 +73,7 @@ public class GeneralController extends MenuBarMethods {
 
     @FXML
     private void logout(ActionEvent actionEvent) throws IOException {
-        super.logout(menu);
+        Application.logout(getClass(), (Stage) menu.getScene().getWindow());
     }
 
     @FXML
@@ -93,7 +88,7 @@ public class GeneralController extends MenuBarMethods {
 
     @FXML
     private void toClient(ActionEvent actionEvent) throws IOException {
-        Current.CLIENT=null;
-        super.stage(menu,"../fxml/client.fxml","Работа с клиентом");
+        Current.CLIENT = null;
+        Application.stage(getClass(), (Stage) menu.getScene().getWindow(), "../fxml/client.fxml", "Работа с клиентом");
     }
 }

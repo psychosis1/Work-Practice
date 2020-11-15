@@ -28,30 +28,11 @@ public class Main extends Application {
         try {
             Current.USER = User.load("user.dat");
             System.out.println(Current.USER);
-            toGeneral(stage, getClass());
+            main.Application.stage(getClass(), stage, "../fxml/general.fxml", "Главная страница");
         } catch (IOException | ClassNotFoundException error) {
             log.log(Level.WARNING, error.getMessage());
-            toAuthorization(stage);
+            main.Application.stage(getClass(), stage, "../fxml/login.fxml", "Авторизация");
         }
-    }
-
-    public void toAuthorization(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../fxml/login.fxml"));
-        stage.getIcons().add(Properties.ICON);
-        stage.setTitle("Авторизация");
-        stage.setScene(new Scene(root, 600, 400));
-        stage.show();
-    }
-
-    public static void toGeneral(Stage stage, Class<?> object) throws IOException {
-        stage.close();
-        Parent root = FXMLLoader.load(object.getResource("../fxml/general.fxml"));
-        stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.getIcons().add(Properties.ICON);
-        stage.setTitle("Главная страница");
-        stage.setScene(new Scene(root));
-        stage.show();
     }
 
     public static void main(String[] args) {

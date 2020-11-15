@@ -14,11 +14,10 @@ import properties.Properties;
 import java.io.File;
 import java.io.IOException;
 
-public class MenuBarMethods {
-    void stage(MenuBar menu, String fxml, String title) throws IOException {
-        Stage stage = (Stage) menu.getScene().getWindow();
+public class Application {
+    public static void stage(Class<?> object, Stage stage, String fxml, String title) throws IOException {
         stage.close();
-        Parent root = FXMLLoader.load(getClass().getResource(fxml));
+        Parent root = FXMLLoader.load(object.getResource(fxml));
         stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.getIcons().add(Properties.ICON);
@@ -27,13 +26,13 @@ public class MenuBarMethods {
         stage.show();
     }
 
-    void logout(MenuBar menu) throws IOException {
+    public static void logout(Class<?> object, Stage stage) throws IOException {
         Current.USER = null; //удаление текущего пользователя
         File file = new File("user.dat");
-        if(file.delete())
+        if (file.delete())
             System.out.println("Файл успешно удален");
         else
             System.out.println("Не удалось удалить файл");
-        stage(menu, "../fxml/login.fxml", "Авторизация");
+        stage(object, stage, "../fxml/login.fxml", "Авторизация");
     }
 }
