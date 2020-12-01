@@ -1,7 +1,7 @@
 package main;
 
 import database.ClientTable;
-import implementation.Client;
+import entity.Client;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;

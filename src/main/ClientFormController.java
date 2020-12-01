@@ -3,31 +3,20 @@ package main;
 import choices.ClientChoices;
 import choices.FieldControl;
 import database.ClientTable;
-import implementation.Client;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import entity.Client;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.InputMethodEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.StringConverter;
 import javafx.util.converter.IntegerStringConverter;
 import properties.Current;
-import properties.Properties;
 
-import javax.sound.midi.Soundbank;
 import java.io.IOException;
 import java.text.NumberFormat;
 import java.text.ParsePosition;
@@ -118,7 +107,6 @@ public class ClientFormController {
                 format.parse(c.getControlNewText(), parsePosition);
                 if (parsePosition.getIndex() == 0 ||
                         parsePosition.getIndex() < c.getControlNewText().length()) {
-                    // reject parsing the complete text failed
                     return null;
                 }
             }
@@ -229,15 +217,16 @@ public class ClientFormController {
             }
         }
 
-        System.out.println(client);
 
         return new ClientTable();
     }
 
     @FXML
     private void delete(ActionEvent actionEvent) throws IOException {
-        if (new ClientTable().delete() == 0) {
-            Application.stage(getClass(), (Stage) save.getScene().getWindow(), "../fxml/general.fxml", "Главная страница");
+        if (Current.CLIENT!=null) {
+            if (new ClientTable().delete() == 0) {
+                Application.stage(getClass(), (Stage) save.getScene().getWindow(), "../fxml/general.fxml", "Главная страница");
+            }
         }
     }
 }

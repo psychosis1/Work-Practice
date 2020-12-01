@@ -1,11 +1,10 @@
 package database;
 
-import implementation.Client;
+import entity.Client;
 import properties.Current;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;

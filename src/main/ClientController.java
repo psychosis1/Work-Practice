@@ -32,7 +32,7 @@ public class ClientController {
         labels = new ArrayList<>(Arrays.asList(clientForm, testBoyko, testGAGE, testSOCRATES, typologicalGroups));
     }
 
-    private void setColorForLabel(MouseEvent mouseEvent) {
+    public void setColorForLabel(MouseEvent mouseEvent) {
         Label labelClicked = (Label) mouseEvent.getSource();
         for (Label label : labels) {
             if (label.getId().equals(labelClicked.getId()))
@@ -42,7 +42,7 @@ public class ClientController {
         }
     }
 
-    private void updateWorkArea(Pane pane) {
+    public void updateWorkArea(Pane pane) {
         if (workArea.getChildren().size()>0)
             workArea.getChildren().remove(0);
         workArea.getChildren().add(pane);

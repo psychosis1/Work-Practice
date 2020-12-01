@@ -1,7 +1,7 @@
 package properties;
 
-import implementation.Client;
-import implementation.User;
+import entity.Client;
+import entity.User;
 
 public class Current {
     public static User USER = null;

@@ -1,11 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <DatePicker layoutX="200.0" layoutY="170.0" />
-   </children>
-</AnchorPane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.TestGAGEController">
+    <top>
+        <Label text="Тест GAGE" textAlignment="JUSTIFY" BorderPane.alignment="CENTER">
+            <font>
+                <Font size="24.0" />
+            </font>
+         <BorderPane.margin>
+            <Insets bottom="5.0" top="5.0" />
+         </BorderPane.margin>
+        </Label>
+    </top>
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button cancelButton="true" mnemonicParsing="false" onAction="#delete" prefHeight="30.0" prefWidth="80.0" text="Удалить">
+               <HBox.margin>
+                  <Insets right="40.0" />
+               </HBox.margin></Button>
+            <Button fx:id="save" defaultButton="true" mnemonicParsing="false" onAction="#saveChanges" prefHeight="30.0" prefWidth="80.0" text="Добавить">
+               <HBox.margin>
+                  <Insets left="40.0" />
+               </HBox.margin></Button>
+         </children></HBox>
+   </bottom>
+   <center>
+      <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" pannable="true" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>
