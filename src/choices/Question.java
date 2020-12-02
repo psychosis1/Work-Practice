@@ -2,11 +2,11 @@ package choices;
 
 import java.util.List;
 
-public class TestGAGEQuestion {
+public class Question {
     private final List<String> names;
     private List<Integer> values;
 
-    public TestGAGEQuestion(List<String> name, List<Integer> value) {
+    public Question(List<String> name, List<Integer> value) {
         this.names = name;
         this.values = value;
     }

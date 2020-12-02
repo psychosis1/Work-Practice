@@ -6,11 +6,11 @@ import javafx.scene.control.ToggleGroup;
 public class FieldControlRadio {
     private String name;
     private String rusName;
-    private TestGAGEQuestion choices;
+    private Question choices;
     private Control control;
     private ToggleGroup toggleGroup;
 
-    public FieldControlRadio(String name, String rusName, TestGAGEQuestion choices) {
+    public FieldControlRadio(String name, String rusName, Question choices) {
         this.name = name;
         this.rusName = rusName;
         this.choices = choices;
@@ -24,7 +24,7 @@ public class FieldControlRadio {
         return rusName;
     }
 
-    public TestGAGEQuestion getChoices() {
+    public Question getChoices() {
         return choices;
     }
 

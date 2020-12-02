@@ -1,9 +1,8 @@
 package main;
 
-import choices.FieldControl;
 import choices.FieldControlRadio;
 import choices.TestGAGEChoices;
-import choices.TestGAGEQuestion;
+import choices.Question;
 import database.TestGAGETable;
 import entity.TestGAGE;
 import javafx.collections.ObservableList;
@@ -24,6 +23,9 @@ public class TestGAGEController {
 
     @FXML
     private Button save;
+
+    @FXML
+    private Label title;
 
     private final VBox vBox = new VBox();
 
@@ -112,12 +114,17 @@ public class TestGAGEController {
             else testGAGE.setAttempt(2);
         });
 
-        if (testGAGE.getAttempt() == 0) testGAGE.setAttempt(1);
-        testGAGE.setClient(Current.CLIENT.getIdClient());
+        if (testGAGE.getAttempt() == 0 ||  testGAGE.getAttempt()==1) { //выбор по умолчанию
+            testGAGE.setAttempt(1);
+            title.setText("Тест GAGE (Первичная диагностика)");
+        }
+        else title.setText("Тест GAGE (Вторичная диагностика)");
+
+        testGAGE.setClient(Current.CLIENT.getIdClient()); //установка клиента
     }
 
     private void setFields() {
-        LinkedHashMap<String, TestGAGEQuestion> rusChoice = new LinkedHashMap<>();
+        LinkedHashMap<String, Question> rusChoice = new LinkedHashMap<>();
         rusChoice.put("1. Злоупотребляли ли Вы алкоголем?", TestGAGEChoices.NOYES);
         rusChoice.put("2. Пробовали ли Вы какие-нибудь вещества, изменяющие настроение и состояние, кроме алкоголя?", TestGAGEChoices.SUBSTANCES);
         rusChoice.put("3.1. Бывали ли в Вашей жизни ситуации, когда вы теряли документы и(или) деньги, когда выпьете или употребите другие вещества, меняющие состояние?", TestGAGEChoices.NOYES);
@@ -146,7 +153,7 @@ public class TestGAGEController {
         names.remove(0); //удаление из списка имен idTestGAGE
         names.remove(0); //удаление из списка имен client
         int i = 0;
-        for (Map.Entry<String, TestGAGEQuestion> item : rusChoice.entrySet()) {
+        for (Map.Entry<String, Question> item : rusChoice.entrySet()) {
             fields.add(new FieldControlRadio(names.get(i), item.getKey(), item.getValue()));
             i++;
         }
@@ -156,13 +163,19 @@ public class TestGAGEController {
     @FXML
     private void saveChanges(ActionEvent actionEvent) {
         if (save.getText().equals("Добавить")) {
-            int number = Objects.requireNonNull(saveInTestGAGE()).insert(testGAGE);
-            if (number > -1) {
-                testGAGE.setIdTestGAGE(number);
-                save.setText("Изменить");
+            TestGAGETable table = saveInTestGAGE();
+            if (table != null) {
+                int number = table.insert(testGAGE);
+                if (number > -1) {
+                    testGAGE.setIdTestGAGE(number);
+                    save.setText("Изменить");
+                }
             }
         } else {
-            Objects.requireNonNull(saveInTestGAGE()).update(testGAGE);
+            TestGAGETable table = saveInTestGAGE();
+            if (table != null) {
+                table.update(testGAGE);
+            }
         }
     }
 
@@ -201,11 +214,12 @@ public class TestGAGEController {
 
     @FXML
     private void delete(ActionEvent actionEvent) {
-        if (new TestGAGETable().delete(testGAGE) == 0) {
-            testGAGE = new TestGAGE();
-            vBox.getChildren().clear();
-            again();
-
+        if (testGAGE.getIdTestGAGE() > 0) {
+            if (new TestGAGETable().delete(testGAGE) == 0) {
+                testGAGE = new TestGAGE();
+                vBox.getChildren().clear();
+                again();
+            }
         }
     }
 
