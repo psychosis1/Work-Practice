@@ -80,7 +80,7 @@ public class ClientController {
 
     @FXML
     private void aboutUs(ActionEvent actionEvent) {
-        AboutUs.getText();
+        Alerts.aboutUs();
     }
 
 }

@@ -88,7 +88,7 @@ public class GeneralController {
 
     @FXML
     private void aboutUs(ActionEvent actionEvent) {
-        AboutUs.getText();
+        Alerts.aboutUs();
     }
 
     @FXML

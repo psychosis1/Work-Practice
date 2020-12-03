@@ -5,6 +5,8 @@ import entity.InterpretationTestGAGE;
 import entity.TestGAGE;
 import javafx.scene.control.Alert;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import properties.Properties;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -76,6 +78,9 @@ public class InterTestGAGE {
                 + "Дата прохождения теста: " + iterTestGAGE.getDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
         text.setWrappingWidth(400);
         text.setLineSpacing(10);
+
+        Stage stage = (Stage) result.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(Properties.ICON); // иконка
 
         result.getDialogPane().setContent(text);
         result.show();

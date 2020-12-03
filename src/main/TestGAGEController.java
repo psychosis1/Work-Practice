@@ -11,10 +11,13 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import javafx.stage.Stage;
 import main.interpretation.InterTestGAGE;
 import properties.Current;
+import properties.Properties;
 
 import java.util.*;
 
@@ -57,8 +60,24 @@ public class TestGAGEController {
         testGAGENotNull();
     }
 
+    private void setTitleForSection(String text) {
+        Label thirdPart = new Label(text);
+        thirdPart.setFont(Font.font(16));
+        thirdPart.setWrapText(true);
+        VBox.setMargin(thirdPart, new Insets(0, 10, 0, 10));
+        vBox.getChildren().add(thirdPart);
+    }
+
     private void setNodes() {
         for (FieldControlRadio field : fields) {
+
+            if (field.getName().equals("loss_documents")) { //раздел 3
+                setTitleForSection("3. Оценка риска злоупотребления ПАВ* (*– как только клиент набирает 3 балла в этом разделе, можно переходить к разделу 4, можно задавать не все вопросы из перечня)");
+            }
+            if (field.getName().equals("dose_reduction")) { //раздел 4
+                setTitleForSection("4. Вопросы о риске зависимости");
+            }
+
             TextFlow label = new TextFlow();
             Text text = new Text(field.getRusName());
             text.setStyle("-fx-font-weight: bold");
@@ -117,6 +136,9 @@ public class TestGAGEController {
         dialog.setTitle("Диагностика");
         dialog.setHeaderText(null);
         dialog.setContentText("Диагностика:");
+
+        Stage stage = (Stage) dialog.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(Properties.ICON); // иконка
 
         Optional<String> result = dialog.showAndWait();
 
@@ -214,15 +236,8 @@ public class TestGAGEController {
             return new TestGAGETable();
 
         }
-        showAlert();
+        Alerts.warning( "Невозможно создать тест", "Нет ответа на 1 и 2 вопрос. Они обязательны.");
         return null;
-    }
-
-    private void showAlert() {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setHeaderText("Невозможно создать тест");
-        alert.setContentText("Нет ответа на 1 и 2 вопрос. Они обязательны.");
-        alert.show();
     }
 
     @FXML
@@ -233,7 +248,7 @@ public class TestGAGEController {
                 vBox.getChildren().clear();
                 again();
             }
-        }
+        } else Alerts.warning("Невозможно произвести удаление","Тест не был создан, чтобы его удалить.");
     }
 
     private void again() {

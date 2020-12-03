@@ -24,20 +24,17 @@ public class LoginController {
     @FXML
     private void login(ActionEvent actionEvent) throws IOException {
         if (new UserTable().selectUser(username.getText(), password.getText()) == 0) {
-            Application.stage(getClass(),(Stage)enter.getScene().getWindow(),"../fxml/general.fxml","Главная страница");
+            Application.stage(getClass(), (Stage) enter.getScene().getWindow(), "../fxml/general.fxml", "Главная страница");
             saveUser();
         } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Ошибка входа в систему");
-            alert.setContentText("Неправильный логин или пароль");
-            alert.show();
+            Alerts.error("Ошибка входа в систему", "Неправильный логин или пароль");
         }
     }
 
     private void saveUser() {
         try {
             User.save("user.dat", Current.USER);
-        }catch (IOException error){
+        } catch (IOException error) {
             error.printStackTrace();
         }
     }

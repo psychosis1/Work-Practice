@@ -227,6 +227,6 @@ public class ClientFormController {
             if (new ClientTable().delete() == 0) {
                 Application.stage(getClass(), (Stage) save.getScene().getWindow(), "../fxml/general.fxml", "Главная страница");
             }
-        }
+        } else Alerts.warning("Невозможно произвести удаление","Клиент не был создан, чтобы его удалить.");
     }
 }
