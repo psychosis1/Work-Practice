@@ -25,6 +25,11 @@
                         <MenuItem mnemonicParsing="false" text="Пользователи" />
                     </items>
                 </Menu>
+            <Menu mnemonicParsing="false" text="О нас">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#aboutUs" text="Информация" />
+              </items>
+            </Menu>
             </menus>
         </MenuBar>
         <SplitPane dividerPositions="0.29797979797979796" layoutY="31.0" prefHeight="368.0" prefWidth="601.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="31.0">

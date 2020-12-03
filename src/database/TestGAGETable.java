@@ -38,7 +38,7 @@ public class TestGAGETable extends Database {
             }
             pstmt.executeUpdate();
 
-            //получение сгенерированного id для нового клиента
+            //получение сгенерированного id
             ResultSet key = pstmt.getGeneratedKeys();
             if (key.next())
                 return key.getInt(1);

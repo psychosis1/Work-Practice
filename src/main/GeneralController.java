@@ -87,6 +87,11 @@ public class GeneralController {
     }
 
     @FXML
+    private void aboutUs(ActionEvent actionEvent) {
+        AboutUs.getText();
+    }
+
+    @FXML
     private void toClient(ActionEvent actionEvent) throws IOException {
         Current.CLIENT = null;
         Application.stage(getClass(), (Stage) menu.getScene().getWindow(), "../fxml/client.fxml", "Работа с клиентом");

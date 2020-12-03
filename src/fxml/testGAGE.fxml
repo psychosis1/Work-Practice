@@ -25,8 +25,16 @@
                </HBox.margin></Button>
             <Button fx:id="save" defaultButton="true" mnemonicParsing="false" onAction="#saveChanges" prefHeight="30.0" prefWidth="80.0" text="Добавить">
                <HBox.margin>
-                  <Insets left="40.0" />
+                  <Insets left="40.0" right="40.0" />
                </HBox.margin></Button>
+            <Button fx:id="result" mnemonicParsing="false" onAction="#getResult" prefHeight="30.0" prefWidth="80.0" text="Результаты">
+               <HBox.margin>
+                  <Insets left="40.0" />
+               </HBox.margin>
+               <padding>
+                  <Insets bottom="5.0" top="5.0" />
+               </padding>
+            </Button>
          </children></HBox>
    </bottom>
    <center>

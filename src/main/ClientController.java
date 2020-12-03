@@ -78,4 +78,9 @@ public class ClientController {
         Application.stage(getClass(),(Stage) menu.getScene().getWindow(),"../fxml/general.fxml","Главная страница");
     }
 
+    @FXML
+    private void aboutUs(ActionEvent actionEvent) {
+        AboutUs.getText();
+    }
+
 }

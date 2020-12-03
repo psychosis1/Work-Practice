@@ -19,6 +19,11 @@
                 <MenuItem mnemonicParsing="false" onAction="#toAdmin" text="Пользователи" />
               </items>
             </Menu>
+            <Menu mnemonicParsing="false" text="О нас">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#aboutUs" text="Информация" />
+              </items>
+            </Menu>
         </menus>
       </MenuBar>
    </top>

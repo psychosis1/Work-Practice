@@ -13,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import main.interpretation.InterTestGAGE;
 import properties.Current;
 
 import java.util.*;
@@ -27,11 +28,16 @@ public class TestGAGEController {
     @FXML
     private Label title;
 
+    @FXML
+    private Button result;
+
     private final VBox vBox = new VBox();
 
     private final List<FieldControlRadio> fields = new ArrayList<>();
 
     private TestGAGE testGAGE = new TestGAGE();
+
+    private final InterTestGAGE inter = new InterTestGAGE();
 
     @FXML
     public void initialize() {
@@ -98,6 +104,11 @@ public class TestGAGEController {
                 }
             }
             save.setText("Изменить");
+            result.setVisible(true);
+            inter.select(testGAGE); //получение результата
+        } else {
+            save.setText("Добавить"); //значение кнопки по умолчанию
+            result.setVisible(false);
         }
     }
 
@@ -114,11 +125,10 @@ public class TestGAGEController {
             else testGAGE.setAttempt(2);
         });
 
-        if (testGAGE.getAttempt() == 0 ||  testGAGE.getAttempt()==1) { //выбор по умолчанию
+        if (testGAGE.getAttempt() == 0 || testGAGE.getAttempt() == 1) { //выбор по умолчанию
             testGAGE.setAttempt(1);
             title.setText("Тест GAGE (Первичная диагностика)");
-        }
-        else title.setText("Тест GAGE (Вторичная диагностика)");
+        } else title.setText("Тест GAGE (Вторичная диагностика)");
 
         testGAGE.setClient(Current.CLIENT.getIdClient()); //установка клиента
     }
@@ -169,12 +179,15 @@ public class TestGAGEController {
                 if (number > -1) {
                     testGAGE.setIdTestGAGE(number);
                     save.setText("Изменить");
+                    result.setVisible(true);
+                    inter.insert(testGAGE);
                 }
             }
         } else {
             TestGAGETable table = saveInTestGAGE();
             if (table != null) {
                 table.update(testGAGE);
+                inter.update(testGAGE);
             }
         }
     }
@@ -228,6 +241,11 @@ public class TestGAGEController {
         askAttempt();
 
         setNodes();
-        save.setText("Добавить");
+        testGAGENotNull();
+    }
+
+    @FXML
+    private void getResult(ActionEvent actionEvent) {
+        inter.getResult();
     }
 }
