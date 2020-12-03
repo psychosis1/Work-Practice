@@ -14,7 +14,7 @@
                         <MenuItem mnemonicParsing="false" onAction="#toHome" text="Главное окно" />
                     </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Акаунт">
+                <Menu mnemonicParsing="false" text="Аккаунт">
                     <items>
                         <MenuItem mnemonicParsing="false" text="Профиль" />
                         <MenuItem mnemonicParsing="false" onAction="#logout" text="Выход" />
@@ -22,7 +22,7 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Администрирование">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Пользователи" />
+                        <MenuItem mnemonicParsing="false" onAction="#toAdmin" text="Пользователи" />
                     </items>
                 </Menu>
             <Menu mnemonicParsing="false" text="О нас">

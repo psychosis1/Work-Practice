@@ -14,10 +14,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-import javafx.stage.Stage;
 import main.interpretation.InterTestGAGE;
 import properties.Current;
-import properties.Properties;
 
 import java.util.*;
 
@@ -41,6 +39,8 @@ public class TestGAGEController {
     private TestGAGE testGAGE = new TestGAGE();
 
     private final InterTestGAGE inter = new InterTestGAGE();
+
+    private final TestGAGETable table= new TestGAGETable();
 
     @FXML
     public void initialize() {
@@ -105,7 +105,7 @@ public class TestGAGEController {
     }
 
     private void testGAGENotNull() {
-        if (new TestGAGETable().selectTestGAGE(testGAGE) > 0) {
+        if (table.selectTestGAGE(testGAGE) > 0) {
             for (FieldControlRadio field : fields) {
                 if (field.getChoices() == null) {
                     TextField textField = (TextField) field.getControl();
@@ -137,8 +137,7 @@ public class TestGAGEController {
         dialog.setHeaderText(null);
         dialog.setContentText("Диагностика:");
 
-        Stage stage = (Stage) dialog.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(Properties.ICON); // иконка
+        Alerts.setIcon(dialog);
 
         Optional<String> result = dialog.showAndWait();
 
@@ -195,8 +194,7 @@ public class TestGAGEController {
     @FXML
     private void saveChanges(ActionEvent actionEvent) {
         if (save.getText().equals("Добавить")) {
-            TestGAGETable table = saveInTestGAGE();
-            if (table != null) {
+            if (saveInTestGAGE()) {
                 int number = table.insert(testGAGE);
                 if (number > -1) {
                     testGAGE.setIdTestGAGE(number);
@@ -206,15 +204,14 @@ public class TestGAGEController {
                 }
             }
         } else {
-            TestGAGETable table = saveInTestGAGE();
-            if (table != null) {
+            if (saveInTestGAGE()) {
                 table.update(testGAGE);
                 inter.update(testGAGE);
             }
         }
     }
 
-    private TestGAGETable saveInTestGAGE() {
+    private boolean saveInTestGAGE() {
         //Первые два вопроса обязательны
         if (fields.get(0).getToggleGroup().getSelectedToggle() != null && fields.get(1).getToggleGroup().getSelectedToggle() != null) {
 
@@ -233,17 +230,17 @@ public class TestGAGEController {
             }
 
             System.out.println(testGAGE);
-            return new TestGAGETable();
+            return true;
 
         }
         Alerts.warning( "Невозможно создать тест", "Нет ответа на 1 и 2 вопрос. Они обязательны.");
-        return null;
+        return false;
     }
 
     @FXML
     private void delete(ActionEvent actionEvent) {
         if (testGAGE.getIdTestGAGE() > 0) {
-            if (new TestGAGETable().delete(testGAGE) == 0) {
+            if (table.delete(testGAGE) == 0) {
                 testGAGE = new TestGAGE();
                 vBox.getChildren().clear();
                 again();

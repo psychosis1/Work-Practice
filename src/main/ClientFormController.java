@@ -26,6 +26,8 @@ import java.util.function.UnaryOperator;
 
 public class ClientFormController {
 
+    private final ClientTable table = new ClientTable();
+
     private final List<FieldControl> fields = new ArrayList<>();
 
     private final GridPane gridPane = new GridPane();
@@ -218,13 +220,13 @@ public class ClientFormController {
         }
 
 
-        return new ClientTable();
+        return table;
     }
 
     @FXML
     private void delete(ActionEvent actionEvent) throws IOException {
         if (Current.CLIENT!=null) {
-            if (new ClientTable().delete() == 0) {
+            if (table.delete() == 0) {
                 Application.stage(getClass(), (Stage) save.getScene().getWindow(), "../fxml/general.fxml", "Главная страница");
             }
         } else Alerts.warning("Невозможно произвести удаление","Клиент не был создан, чтобы его удалить.");

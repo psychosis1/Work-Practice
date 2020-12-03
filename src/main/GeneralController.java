@@ -77,8 +77,8 @@ public class GeneralController {
     }
 
     @FXML
-    private void toProfile(ActionEvent actionEvent) {
-
+    private void toProfile(ActionEvent actionEvent) throws IOException {
+        Application.stage(getClass(), (Stage) menu.getScene().getWindow(), "../fxml/profile.fxml", "Профиль");
     }
 
     @FXML

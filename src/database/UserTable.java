@@ -1,5 +1,6 @@
 package database;
 
+import entity.InterpretationTestGAGE;
 import entity.User;
 import properties.Current;
 
@@ -36,5 +37,23 @@ public class UserTable extends Database {
             log.log(Level.SEVERE, e.getMessage());
         }
         return -1;
+    }
+
+
+    public int update(String field, String value) {
+        //создание sql запроса
+        String sql = "UPDATE User SET " + field + " = ? WHERE username = ?";
+
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setObject(1, value);
+            pstmt.setObject(2, Current.USER.getUsername());
+
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            log.log(Level.WARNING, e.getMessage());
+            return -1;
+        }
+        return 0;
     }
 }

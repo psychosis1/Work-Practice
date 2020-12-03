@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ProfileController">
+    <top>
+        <MenuBar BorderPane.alignment="CENTER">
+            <menus>
+                <Menu mnemonicParsing="false" text="Домой">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#toHome" text="Главное окно" />
+                    </items>
+                </Menu>
+            <Menu mnemonicParsing="false" text="Аккаунт">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#logout" text="Выход" />
+              </items>
+            </Menu>
+                <Menu mnemonicParsing="false" text="Администрирование">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#toAdmin" text="Пользователи" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="О нас">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#aboutUs" text="Информация" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+    <center>
+        <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <children>
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0" VBox.vgrow="ALWAYS">
+                    <children>
+                        <Label alignment="CENTER_RIGHT" prefWidth="100.0" text="Логин">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="username" editable="false">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </TextField>
+                        <Button mnemonicParsing="false" onAction="#setUsername" text="Изменить">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0" VBox.vgrow="ALWAYS">
+                    <children>
+                        <Label alignment="CENTER_RIGHT" prefWidth="100.0" text="Пароль">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <PasswordField fx:id="password" promptText="Текущий пароль">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </PasswordField>
+                        <Button mnemonicParsing="false" onAction="#setPassword" text="Изменить">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0" VBox.vgrow="ALWAYS">
+                    <children>
+                        <Label alignment="CENTER_RIGHT" prefWidth="100.0" text="Имя">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="firstName" editable="false">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </TextField>
+                        <Button mnemonicParsing="false" onAction="#setFirstName" text="Изменить">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0" VBox.vgrow="ALWAYS">
+                    <children>
+                        <Label alignment="CENTER_RIGHT" prefWidth="100.0" text="Фамилия">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="lastName" editable="false">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </TextField>
+                        <Button mnemonicParsing="false" onAction="#setLastName" text="Изменить">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0" VBox.vgrow="ALWAYS">
+                    <children>
+                        <Label alignment="CENTER_RIGHT" prefWidth="100.0" text="Отчество">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="patronymic" editable="false">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </TextField>
+                        <Button mnemonicParsing="false" onAction="#setPatronymic" text="Изменить">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0" VBox.vgrow="ALWAYS">
+                    <children>
+                        <Label alignment="CENTER_RIGHT" prefWidth="100.0" text="Должность">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="position" editable="false">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </TextField>
+                        <Button mnemonicParsing="false" onAction="#setPosition" text="Изменить">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </center>
+</BorderPane>

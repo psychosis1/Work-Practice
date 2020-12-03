@@ -83,4 +83,9 @@ public class ClientController {
         Alerts.aboutUs();
     }
 
+    @FXML
+    private void toAdmin(ActionEvent actionEvent) {
+
+    }
+
 }

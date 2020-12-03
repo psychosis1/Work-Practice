@@ -1,6 +1,7 @@
 package main;
 
 import javafx.scene.control.Alert;
+import javafx.scene.control.Dialog;
 import javafx.stage.Stage;
 import properties.Properties;
 
@@ -15,17 +16,22 @@ public class Alerts {
         alert.show();
     }
 
-    public static void error(String header, String content) {
+    public static void error(String header, String content, double height) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Ошибка");
         alert.setHeaderText(header);
         alert.setContentText(content);
+        alert.setHeight(height);
         setIcon(alert);
         alert.show();
     }
 
-    private static void setIcon(Alert alert) {
-        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+    public static void error(String header, String content) {
+        error(header, content, 0);
+    }
+
+    public static void setIcon(Dialog<?> dialog) {
+        Stage stage = (Stage) dialog.getDialogPane().getScene().getWindow();
         stage.getIcons().add(Properties.ICON); // иконка
     }
 

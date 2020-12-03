@@ -56,7 +56,7 @@ public class InterTestGAGE {
 
         if (iterTestGAGE.getOverall_points_risk_dependency() >= 2)
             iterTestGAGE.setRisk_dependency("имеются признаки зависимости");
-        else iterTestGAGE.setRisk_dependency("нет выраженных  зависимости");
+        else iterTestGAGE.setRisk_dependency("нет выраженных признаков зависимости");
     }
 
 
