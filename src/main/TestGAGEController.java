@@ -1,6 +1,6 @@
 package main;
 
-import choices.FieldControlRadio;
+import choices.FieldControlGAGE;
 import choices.TestGAGEChoices;
 import choices.Question;
 import database.TestGAGETable;
@@ -34,7 +34,7 @@ public class TestGAGEController {
 
     private final VBox vBox = new VBox();
 
-    private final List<FieldControlRadio> fields = new ArrayList<>();
+    private final List<FieldControlGAGE> fields = new ArrayList<>();
 
     private TestGAGE testGAGE = new TestGAGE();
 
@@ -69,7 +69,7 @@ public class TestGAGEController {
     }
 
     private void setNodes() {
-        for (FieldControlRadio field : fields) {
+        for (FieldControlGAGE field : fields) {
 
             if (field.getName().equals("loss_documents")) { //раздел 3
                 setTitleForSection("3. Оценка риска злоупотребления ПАВ* (*– как только клиент набирает 3 балла в этом разделе, можно переходить к разделу 4, можно задавать не все вопросы из перечня)");
@@ -106,7 +106,7 @@ public class TestGAGEController {
 
     private void testGAGENotNull() {
         if (table.selectTestGAGE(testGAGE) > 0) {
-            for (FieldControlRadio field : fields) {
+            for (FieldControlGAGE field : fields) {
                 if (field.getChoices() == null) {
                     TextField textField = (TextField) field.getControl();
                     textField.setText((String) testGAGE.getField(field.getName()));
@@ -141,15 +141,23 @@ public class TestGAGEController {
 
         Optional<String> result = dialog.showAndWait();
 
-        result.ifPresent(attempt -> {
-            if (attempt.equals("Первичная")) testGAGE.setAttempt(1);
-            else testGAGE.setAttempt(2);
-        });
 
-        if (testGAGE.getAttempt() == 0 || testGAGE.getAttempt() == 1) { //выбор по умолчанию
-            testGAGE.setAttempt(1);
-            title.setText("Тест GAGE (Первичная диагностика)");
-        } else title.setText("Тест GAGE (Вторичная диагностика)");
+        result.ifPresentOrElse(
+                (attempt)
+                        -> {
+                    if (attempt.equals("Первичная")) {
+                        testGAGE.setAttempt(1);
+                        title.setText("Тест GAGE (Первичная диагностика)");
+                    } else {
+                        testGAGE.setAttempt(2);
+                        title.setText("Тест GAGE (Вторичная диагностика)");
+                    }
+                },
+                ()
+                        -> {
+                    testGAGE.setAttempt(1);
+                    title.setText("Тест GAGE (Первичная диагностика)");
+                });
 
         testGAGE.setClient(Current.CLIENT.getIdClient()); //установка клиента
     }
@@ -185,7 +193,7 @@ public class TestGAGEController {
         names.remove(0); //удаление из списка имен client
         int i = 0;
         for (Map.Entry<String, Question> item : rusChoice.entrySet()) {
-            fields.add(new FieldControlRadio(names.get(i), item.getKey(), item.getValue()));
+            fields.add(new FieldControlGAGE(names.get(i), item.getKey(), item.getValue()));
             i++;
         }
 
@@ -215,7 +223,7 @@ public class TestGAGEController {
         //Первые два вопроса обязательны
         if (fields.get(0).getToggleGroup().getSelectedToggle() != null && fields.get(1).getToggleGroup().getSelectedToggle() != null) {
 
-            for (FieldControlRadio field : fields) {
+            for (FieldControlGAGE field : fields) {
                 if (field.getChoices() == null) {
                     TextField textField = (TextField) field.getControl();
                     testGAGE.setField(field.getName(), textField.getText());

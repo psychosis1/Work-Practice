@@ -43,13 +43,13 @@ public class ClientController {
     }
 
     public void updateWorkArea(Pane pane) {
-        if (workArea.getChildren().size()>0)
+        if (workArea.getChildren().size() > 0)
             workArea.getChildren().remove(0);
         workArea.getChildren().add(pane);
-        AnchorPane.setBottomAnchor(pane,0.0);
-        AnchorPane.setLeftAnchor(pane,0.0);
-        AnchorPane.setRightAnchor(pane,0.0);
-        AnchorPane.setTopAnchor(pane,0.0);
+        AnchorPane.setBottomAnchor(pane, 0.0);
+        AnchorPane.setLeftAnchor(pane, 0.0);
+        AnchorPane.setRightAnchor(pane, 0.0);
+        AnchorPane.setTopAnchor(pane, 0.0);
         pane.setPrefWidth(100);
         pane.setPrefHeight(160);
     }
@@ -61,8 +61,16 @@ public class ClientController {
     }
 
     @FXML
+    private void toTestBoyko(MouseEvent mouseEvent) throws IOException {
+        if (Current.CLIENT != null) {
+            setColorForLabel(mouseEvent);
+            updateWorkArea(FXMLLoader.load(getClass().getResource("../fxml/testBoyko.fxml")));
+        }
+    }
+
+    @FXML
     private void toTestGAGE(MouseEvent mouseEvent) throws IOException {
-        if (Current.CLIENT!=null){
+        if (Current.CLIENT != null) {
             setColorForLabel(mouseEvent);
             updateWorkArea(FXMLLoader.load(getClass().getResource("../fxml/testGAGE.fxml")));
         }
@@ -70,12 +78,12 @@ public class ClientController {
 
     @FXML
     private void logout(ActionEvent actionEvent) throws IOException {
-        Application.logout(getClass(),(Stage) menu.getScene().getWindow());
+        Application.logout(getClass(), (Stage) menu.getScene().getWindow());
     }
 
     @FXML
     private void toHome(ActionEvent actionEvent) throws IOException {
-        Application.stage(getClass(),(Stage) menu.getScene().getWindow(),"../fxml/general.fxml","Главная страница");
+        Application.stage(getClass(), (Stage) menu.getScene().getWindow(), "../fxml/general.fxml", "Главная страница");
     }
 
     @FXML

@@ -12,9 +12,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-public class InterTestGAGE {
-    private InterpretationTestGAGE iterTestGAGE = new InterpretationTestGAGE();
+public class InterTestGAGE extends Inter<TestGAGE> {
+    private final InterpretationTestGAGE inter = new InterpretationTestGAGE();
 
+    @Override
     public void calculate(TestGAGE testGAGE) {
         testAndDate(testGAGE.getIdTestGAGE()); //установка id теста и текущего времени
 
@@ -38,44 +39,37 @@ public class InterTestGAGE {
             }
         }
 
-        iterTestGAGE.setOverall_points_risk_abuse(sum1);
-        iterTestGAGE.setOverall_points_risk_dependency(sum2);
+        inter.setOverall_points_risk_abuse(sum1);
+        inter.setOverall_points_risk_dependency(sum2);
 
         setText();
     }
 
+    @Override
     public void testAndDate(int id) {
-        iterTestGAGE.setTest(id);
-        iterTestGAGE.setDate(LocalDateTime.now());
+        inter.setTest(id);
+        inter.setDate(LocalDateTime.now());
     }
 
     public void setText() {
-        if (iterTestGAGE.getOverall_points_risk_abuse() >= 3)
-            iterTestGAGE.setRisk_abuse("выраженные признаки злоупотребления");
-        else iterTestGAGE.setRisk_abuse("нет выраженных признаков злоупотребления");
+        if (inter.getOverall_points_risk_abuse() >= 3)
+            inter.setRisk_abuse("выраженные признаки злоупотребления");
+        else inter.setRisk_abuse("нет выраженных признаков злоупотребления");
 
-        if (iterTestGAGE.getOverall_points_risk_dependency() >= 2)
-            iterTestGAGE.setRisk_dependency("имеются признаки зависимости");
-        else iterTestGAGE.setRisk_dependency("нет выраженных признаков зависимости");
+        if (inter.getOverall_points_risk_dependency() >= 2)
+            inter.setRisk_dependency("имеются признаки зависимости");
+        else inter.setRisk_dependency("нет выраженных признаков зависимости");
     }
 
-
-    public int integerValue(String value) {
-        try {
-            return Integer.parseInt(value);
-        } catch (NumberFormatException e) {
-            return -1;
-        }
-    }
-
+    @Override
     public void getResult() {
         Alert result = new Alert(Alert.AlertType.INFORMATION);
         result.setTitle("Результат");
         result.setHeaderText(null);
         Text text = new Text("\n"
-                + "Риск злоупотребления: " + iterTestGAGE.getRisk_abuse() + "\n"
-                + "Риск зависимости: " + iterTestGAGE.getRisk_dependency() + "\n"
-                + "Дата прохождения теста: " + iterTestGAGE.getDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+                + "Риск злоупотребления: " + inter.getRisk_abuse() + "\n"
+                + "Риск зависимости: " + inter.getRisk_dependency() + "\n"
+                + "Дата прохождения теста: " + inter.getDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
         text.setWrappingWidth(400);
         text.setLineSpacing(10);
 
@@ -86,19 +80,22 @@ public class InterTestGAGE {
         result.show();
     }
 
+    @Override
     public void insert(TestGAGE testGAGE) {
         calculate(testGAGE);
-        int code = new InterpretationTestGAGETable().insert(iterTestGAGE);
-        if (code != -1) iterTestGAGE.setIdInterpretationGAGE(code);
+        int code = new InterpretationTestGAGETable().insert(inter);
+        if (code != -1) inter.setIdInterpretationGAGE(code);
     }
 
+    @Override
     public void update(TestGAGE testGAGE) {
         calculate(testGAGE);
-        new InterpretationTestGAGETable().update(iterTestGAGE);
+        new InterpretationTestGAGETable().update(inter);
     }
 
+    @Override
     public void select(TestGAGE testGAGE) {
-        iterTestGAGE.setTest(testGAGE.getIdTestGAGE());
-        new InterpretationTestGAGETable().select(iterTestGAGE);
+        inter.setTest(testGAGE.getIdTestGAGE());
+        new InterpretationTestGAGETable().select(inter);
     }
 }
