@@ -29,7 +29,9 @@ public class UserTable extends Database {
                             rs.getString("first_name"),
                             rs.getString("last_name"),
                             rs.getString("patronymic"),
-                            rs.getString("position"));
+                            rs.getString("position"),
+                            rs.getBoolean("admin")
+                    );
                     return 0;
                 }
             }

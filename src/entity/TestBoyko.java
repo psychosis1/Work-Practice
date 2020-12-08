@@ -45,6 +45,86 @@ public class TestBoyko {
         this.attempt=attempt;
     }
 
+    public int getAggressiveness() {
+        return aggressiveness;
+    }
+
+    public void setAggressiveness(int aggressiveness) {
+        this.aggressiveness = aggressiveness;
+    }
+
+    public int getAlarm() {
+        return alarm;
+    }
+
+    public void setAlarm(int alarm) {
+        this.alarm = alarm;
+    }
+
+    public int getMemory_disorder() {
+        return memory_disorder;
+    }
+
+    public void setMemory_disorder(int memory_disorder) {
+        this.memory_disorder = memory_disorder;
+    }
+
+    public int getCriticism() {
+        return criticism;
+    }
+
+    public void setCriticism(int criticism) {
+        this.criticism = criticism;
+    }
+
+    public int getSelf_service() {
+        return self_service;
+    }
+
+    public void setSelf_service(int self_service) {
+        this.self_service = self_service;
+    }
+
+    public int getWork_activity() {
+        return work_activity;
+    }
+
+    public void setWork_activity(int work_activity) {
+        this.work_activity = work_activity;
+    }
+
+    public int getFriends() {
+        return friends;
+    }
+
+    public void setFriends(int friends) {
+        this.friends = friends;
+    }
+
+    public int getFamily_relation() {
+        return family_relation;
+    }
+
+    public void setFamily_relation(int family_relation) {
+        this.family_relation = family_relation;
+    }
+
+    public int getChild_parent() {
+        return child_parent;
+    }
+
+    public void setChild_parent(int child_parent) {
+        this.child_parent = child_parent;
+    }
+
+    public int getLeisure() {
+        return leisure;
+    }
+
+    public void setLeisure(int leisure) {
+        this.leisure = leisure;
+    }
+
     /**
      * Получение названий полей
      */

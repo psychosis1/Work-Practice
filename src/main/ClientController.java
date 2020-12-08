@@ -77,6 +77,14 @@ public class ClientController {
     }
 
     @FXML
+    private void toTypologicalGroups(MouseEvent mouseEvent) throws IOException {
+        if (Current.CLIENT != null) {
+            setColorForLabel(mouseEvent);
+            updateWorkArea(FXMLLoader.load(getClass().getResource("../fxml/typologicalGroup.fxml")));
+        }
+    }
+
+    @FXML
     private void logout(ActionEvent actionEvent) throws IOException {
         Application.logout(getClass(), (Stage) menu.getScene().getWindow());
     }
@@ -94,6 +102,11 @@ public class ClientController {
     @FXML
     private void toAdmin(ActionEvent actionEvent) {
 
+    }
+
+    @FXML
+    private void toProfile(ActionEvent actionEvent) throws IOException {
+        Application.stage(getClass(), (Stage) menu.getScene().getWindow(), "../fxml/profile.fxml", "Профиль");
     }
 
 }

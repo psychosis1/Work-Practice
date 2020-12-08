@@ -88,6 +88,190 @@ public class TestGAGE {
         this.attempt = attempt;
     }
 
+    public int getAlcohol() {
+        return alcohol;
+    }
+
+    public void setAlcohol(int alcohol) {
+        this.alcohol = alcohol;
+    }
+
+    public int getSubstances() {
+        return substances;
+    }
+
+    public void setSubstances(int substances) {
+        this.substances = substances;
+    }
+
+    public int getLoss_documents() {
+        return loss_documents;
+    }
+
+    public void setLoss_documents(int loss_documents) {
+        this.loss_documents = loss_documents;
+    }
+
+    public int getLoss_documents_when() {
+        return loss_documents_when;
+    }
+
+    public void setLoss_documents_when(int loss_documents_when) {
+        this.loss_documents_when = loss_documents_when;
+    }
+
+    public int getLoss_documents_time() {
+        return loss_documents_time;
+    }
+
+    public void setLoss_documents_time(int loss_documents_time) {
+        this.loss_documents_time = loss_documents_time;
+    }
+
+    public int getDo_not_work() {
+        return do_not_work;
+    }
+
+    public void setDo_not_work(int do_not_work) {
+        this.do_not_work = do_not_work;
+    }
+
+    public int getDo_not_work_when() {
+        return do_not_work_when;
+    }
+
+    public void setDo_not_work_when(int do_not_work_when) {
+        this.do_not_work_when = do_not_work_when;
+    }
+
+    public int getLoss_loved_ones() {
+        return loss_loved_ones;
+    }
+
+    public void setLoss_loved_ones(int loss_loved_ones) {
+        this.loss_loved_ones = loss_loved_ones;
+    }
+
+    public int getFight() {
+        return fight;
+    }
+
+    public void setFight(int fight) {
+        this.fight = fight;
+    }
+
+    public int getInjuries() {
+        return injuries;
+    }
+
+    public void setInjuries(int injuries) {
+        this.injuries = injuries;
+    }
+
+    public int getLots_alcohol() {
+        return lots_alcohol;
+    }
+
+    public void setLots_alcohol(int lots_alcohol) {
+        this.lots_alcohol = lots_alcohol;
+    }
+
+    public int getLots_alcohol_time() {
+        return lots_alcohol_time;
+    }
+
+    public void setLots_alcohol_time(int lots_alcohol_time) {
+        this.lots_alcohol_time = lots_alcohol_time;
+    }
+
+    public int getDrink_alcohol_time() {
+        return drink_alcohol_time;
+    }
+
+    public void setDrink_alcohol_time(int drink_alcohol_time) {
+        this.drink_alcohol_time = drink_alcohol_time;
+    }
+
+    public String getTry_substances() {
+        return try_substances;
+    }
+
+    public void setTry_substances(String try_substances) {
+        this.try_substances = try_substances;
+    }
+
+    public int getTry_substances_choice() {
+        return try_substances_choice;
+    }
+
+    public void setTry_substances_choice(int try_substances_choice) {
+        this.try_substances_choice = try_substances_choice;
+    }
+
+    public int getHow_use() {
+        return how_use;
+    }
+
+    public void setHow_use(int how_use) {
+        this.how_use = how_use;
+    }
+
+    public int getDifficulties() {
+        return difficulties;
+    }
+
+    public void setDifficulties(int difficulties) {
+        this.difficulties = difficulties;
+    }
+
+    public int getPoor_health() {
+        return poor_health;
+    }
+
+    public void setPoor_health(int poor_health) {
+        this.poor_health = poor_health;
+    }
+
+    public int getCompany() {
+        return company;
+    }
+
+    public void setCompany(int company) {
+        this.company = company;
+    }
+
+    public int getDose_reduction() {
+        return dose_reduction;
+    }
+
+    public void setDose_reduction(int dose_reduction) {
+        this.dose_reduction = dose_reduction;
+    }
+
+    public int getIrritation() {
+        return irritation;
+    }
+
+    public void setIrritation(int irritation) {
+        this.irritation = irritation;
+    }
+
+    public int getFault() {
+        return fault;
+    }
+
+    public void setFault(int fault) {
+        this.fault = fault;
+    }
+
+    public int getTone() {
+        return tone;
+    }
+
+    public void setTone(int tone) {
+        this.tone = tone;
+    }
+
     /**
      * Получение названий полей
      */

@@ -37,13 +37,13 @@ public class InterTestBoyko extends Inter<TestBoyko> {
         inter.setOverall_points(sum);
 
         if (sum < 11)
-            inter.setOverall_points(0);
+            inter.setOverall_assessment(0);
         else if (sum < 21)
-            inter.setOverall_points(1);
+            inter.setOverall_assessment(1);
         else if (sum < 31)
-            inter.setOverall_points(2);
+            inter.setOverall_assessment(2);
         else if (sum < 41)
-            inter.setOverall_points(3);
+            inter.setOverall_assessment(3);
 
     }
 
@@ -60,7 +60,7 @@ public class InterTestBoyko extends Inter<TestBoyko> {
         result.setHeaderText(null);
         TextFlow flow = new TextFlow();
         flow.setLineSpacing(10);
-        flow.setPrefWidth(400);
+        flow.setPrefWidth(500);
 
         List<String> results = Arrays.asList(
                 "Агрессивность/аутоагрессивность: ",

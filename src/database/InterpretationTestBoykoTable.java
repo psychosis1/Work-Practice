@@ -8,7 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class InterpretationTestBoykoTable extends Database {
-    private static final Logger log = Logger.getLogger(InterpretationTestGAGETable.class.getName());
+    private static final Logger log = Logger.getLogger(InterpretationTestBoykoTable.class.getName());
 
     public int insert(InterpretationTestBoyko inter) {
         List<String> names = InterpretationTestBoyko.getFieldsNames();

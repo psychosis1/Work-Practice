@@ -9,16 +9,19 @@ public class User implements Externalizable {
     private String last_name;
     private String patronymic;
     private String position;
+    private boolean admin;
 
-    public User(){}
+    public User() {
+    }
 
-    public User(String username, String password, String first_name, String last_name, String patronymic, String position) {
+    public User(String username, String password, String first_name, String last_name, String patronymic, String position, boolean admin) {
         this.username = username;
         this.password = password;
         this.first_name = first_name;
         this.last_name = last_name;
         this.patronymic = patronymic;
         this.position = position;
+        this.admin = admin;
     }
 
     public String getUsername() {
@@ -69,6 +72,14 @@ public class User implements Externalizable {
         this.position = position;
     }
 
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+
     @Override
     public void writeExternal(ObjectOutput out) throws IOException {
         out.writeObject(username);
@@ -77,6 +88,7 @@ public class User implements Externalizable {
         out.writeObject(last_name);
         out.writeObject(patronymic);
         out.writeObject(position);
+        out.writeObject(admin);
     }
 
     @Override
@@ -87,6 +99,7 @@ public class User implements Externalizable {
         last_name = (String) in.readObject();
         patronymic = (String) in.readObject();
         position = (String) in.readObject();
+        admin = (boolean) in.readObject();
     }
 
     public static void save(String path, User user) throws IOException {
