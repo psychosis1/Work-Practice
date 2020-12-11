@@ -1,4 +1,4 @@
-package main.interpretation;
+package main.client.interpretation;
 
 import database.InterpretationTestGAGETable;
 import entity.InterpretationTestGAGE;

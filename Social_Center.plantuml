@@ -1,0 +1,305 @@
+@startuml
+
+title __SOCIAL_CENTER's Class Diagram__\n
+
+  namespace choices {
+    class choices.ClientChoices {
+    }
+  }
+  
+
+  namespace choices {
+    class choices.FieldControl {
+    }
+  }
+  
+
+  namespace choices {
+    class choices.FieldControlBoyko {
+    }
+  }
+  
+
+  namespace choices {
+    class choices.FieldControlGAGE {
+    }
+  }
+  
+
+  namespace choices {
+    class choices.InterTestBoykoChoices {
+    }
+  }
+  
+
+  namespace choices {
+    class choices.Question {
+    }
+  }
+  
+
+  namespace choices {
+    class choices.TestBoykoChoices {
+    }
+  }
+  
+
+  namespace choices {
+    class choices.TestGAGEChoices {
+    }
+  }
+  
+
+  namespace database {
+    class database.ClientTable {
+    }
+  }
+  
+
+  namespace database {
+    class database.Database {
+    }
+  }
+  
+
+  namespace database {
+    class database.InterpretationTestBoykoTable {
+    }
+  }
+  
+
+  namespace database {
+    class database.InterpretationTestGAGETable {
+    }
+  }
+  
+
+  namespace database {
+    class database.TestBoykoTable {
+    }
+  }
+  
+
+  namespace database {
+    class database.TestGAGETable {
+    }
+  }
+  
+
+  namespace database {
+    class database.TypologicalGroupTable {
+    }
+  }
+  
+
+  namespace database {
+    class database.UserTable {
+    }
+  }
+  
+
+  namespace entity {
+    class entity.Client {
+    }
+  }
+  
+
+  namespace entity {
+    class entity.InterpretationTestBoyko {
+    }
+  }
+  
+
+  namespace entity {
+    class entity.InterpretationTestGAGE {
+    }
+  }
+  
+
+  namespace entity {
+    class entity.TestBoyko {
+    }
+  }
+  
+
+  namespace entity {
+    class entity.TestGAGE {
+    }
+  }
+  
+
+  namespace entity {
+    class entity.TypologicalGroup {
+    }
+  }
+  
+
+  namespace entity {
+    class entity.User {
+    }
+  }
+  
+
+  namespace main {
+    class main.Alerts {
+    }
+  }
+  
+
+  namespace main {
+    class main.Application {
+    }
+  }
+  
+
+  namespace main {
+    class main.GeneralController {
+    }
+  }
+  
+
+  namespace main {
+    class main.LoginController {
+    }
+  }
+  
+
+  namespace main {
+    class main.Main {
+    }
+  }
+  
+
+  namespace main {
+    class main.PasswordDialog {
+    }
+  }
+  
+
+  namespace main {
+    class main.ProfileController {
+    }
+  }
+  
+
+  namespace main {
+    namespace client {
+      class main.client.ClientController {
+      }
+    }
+  }
+  
+
+  namespace main {
+    namespace client {
+      class main.client.ClientFormController {
+      }
+    }
+  }
+  
+
+  namespace main {
+    namespace client {
+      class main.client.TestBoykoController {
+      }
+    }
+  }
+  
+
+  namespace main {
+    namespace client {
+      class main.client.TestGAGEController {
+      }
+    }
+  }
+  
+
+  namespace main {
+    namespace client {
+      class main.client.TypologicalGroupController {
+      }
+    }
+  }
+  
+
+  namespace main {
+    namespace client {
+      namespace interpretation {
+        abstract class main.client.interpretation.Inter {
+        }
+      }
+    }
+  }
+  
+
+  namespace main {
+    namespace client {
+      namespace interpretation {
+        class main.client.interpretation.InterTestBoyko {
+        }
+      }
+    }
+  }
+  
+
+  namespace main {
+    namespace client {
+      namespace interpretation {
+        class main.client.interpretation.InterTestGAGE {
+        }
+      }
+    }
+  }
+  
+
+  namespace properties {
+    class properties.Current {
+    }
+  }
+  
+
+  namespace properties {
+    class properties.Properties {
+    }
+  }
+  
+
+  choices.FieldControlGAGE o-- choices.Question : choices
+  database.ClientTable -up-|> database.Database
+  database.InterpretationTestBoykoTable -up-|> database.Database
+  database.InterpretationTestGAGETable -up-|> database.Database
+  database.TestBoykoTable -up-|> database.Database
+  database.TestGAGETable -up-|> database.Database
+  database.TypologicalGroupTable -up-|> database.Database
+  database.UserTable -up-|> database.Database
+  entity.User .up.|> java.io.Externalizable
+  main.Main -up-|> javafx.application.Application
+  main.PasswordDialog -up-|> javafx.scene.control.Dialog
+  main.ProfileController o-- database.UserTable : table
+  main.client.ClientFormController o-- database.ClientTable : table
+  main.client.TestBoykoController o-- main.client.interpretation.InterTestBoyko : inter
+  main.client.TestBoykoController o-- database.TestBoykoTable : table
+  main.client.TestBoykoController o-- entity.TestBoyko : testBoyko
+  main.client.TestGAGEController o-- main.client.interpretation.InterTestGAGE : inter
+  main.client.TestGAGEController o-- database.TestGAGETable : table
+  main.client.TestGAGEController o-- entity.TestGAGE : testGAGE
+  main.client.TypologicalGroupController o-- database.TestBoykoTable : boykoTable
+  main.client.TypologicalGroupController o-- database.TestGAGETable : gageTable
+  main.client.TypologicalGroupController o-- entity.TypologicalGroup : group
+  main.client.TypologicalGroupController o-- database.TypologicalGroupTable : table
+  main.client.TypologicalGroupController o-- entity.TestBoyko : testBoyko
+  main.client.TypologicalGroupController o-- entity.TestGAGE : testGAGE
+  main.client.interpretation.InterTestBoyko -up-|> main.client.interpretation.Inter
+  main.client.interpretation.InterTestBoyko o-- entity.InterpretationTestBoyko : inter
+  main.client.interpretation.InterTestGAGE -up-|> main.client.interpretation.Inter
+  main.client.interpretation.InterTestGAGE o-- entity.InterpretationTestGAGE : inter
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

@@ -1,4 +1,4 @@
-package main;
+package main.client;
 
 import choices.*;
 import database.TestBoykoTable;
@@ -12,7 +12,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
-import main.interpretation.InterTestBoyko;
+import main.Alerts;
+import main.client.interpretation.InterTestBoyko;
 import properties.Current;
 
 import java.util.*;

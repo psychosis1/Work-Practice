@@ -1,0 +1,407 @@
+@startuml
+
+title __ENTITY's Class Diagram__\n
+
+  namespace entity {
+    class entity.Client {
+        - AIDS_center : int
+        - HIV_get_treatment : int
+        - HIV_status : int
+        - accounting_in_ODN_RUVD : int
+        - accounting_in_narcological_clinic : int
+        - age : int
+        - alcohol_last_month : int
+        - another_special_social_status : String
+        - av_doc : int
+        - case_examined_in_KDN_ZP : int
+        - client_security : int
+        - code : String
+        - disability_group : int
+        - duration_of_alcohol : double
+        - duration_of_remission : double
+        - duration_of_use : double
+        - education : int
+        - experience_sexual_physical_abuse : int
+        - full_name : String
+        - hepatitis_c : int
+        - idClient : int
+        - income_level : int
+        - location : int
+        - marital_status : int
+        - number_children : int
+        - number_minor_children : int
+        - registration : int
+        - sex : int
+        - special_social_status : int
+        - substances_used : String
+        - the_treatment_was : int
+        - type_room : int
+        - use_last_month : int
+        - work_place : int
+        + Client()
+        + Client()
+        + getAccounting_in_narcological_clinic()
+        + getAccounting_in_odn_ruvd()
+        + getAge()
+        + getAids_center()
+        + getAlcohol_last_month()
+        + getAnother_special_social_status()
+        + getAv_doc()
+        + getCase_examined_in_kdn_zp()
+        + getClient_security()
+        + getCode()
+        + getDisability_group()
+        + getDuration_of_alcohol()
+        + getDuration_of_remission()
+        + getDuration_of_use()
+        + getEducation()
+        + getExperience_sexual_physical_abuse()
+        + getField()
+        {static} + getFieldsNames()
+        + getFull_name()
+        + getHepatitis_c()
+        + getHiv_get_treatment()
+        + getHiv_status()
+        + getIdClient()
+        + getIncome_level()
+        + getLocation()
+        + getMarital_status()
+        + getNumber_children()
+        + getNumber_minor_children()
+        + getRegistration()
+        + getSex()
+        + getSpecial_social_status()
+        + getSubstances_used()
+        + getThe_treatment_was()
+        + getType_room()
+        + getUse_last_month()
+        + getWork_place()
+        + setAccounting_in_narcological_clinic()
+        + setAccounting_in_odn_ruvd()
+        + setAge()
+        + setAids_center()
+        + setAlcohol_last_month()
+        + setAnother_special_social_status()
+        + setAv_doc()
+        + setCase_examined_in_kdn_zp()
+        + setClient_security()
+        + setCode()
+        + setDisability_group()
+        + setDuration_of_alcohol()
+        + setDuration_of_remission()
+        + setDuration_of_use()
+        + setEducation()
+        + setExperience_sexual_physical_abuse()
+        + setField()
+        + setFull_name()
+        + setHepatitis_c()
+        + setHiv_get_treatment()
+        + setHiv_status()
+        + setIdClient()
+        + setIncome_level()
+        + setLocation()
+        + setMarital_status()
+        + setNumber_children()
+        + setNumber_minor_children()
+        + setRegistration()
+        + setSex()
+        + setSpecial_social_status()
+        + setSubstances_used()
+        + setThe_treatment_was()
+        + setType_room()
+        + setUse_last_month()
+        + setWork_place()
+        + toString()
+    }
+  }
+  
+
+  namespace entity {
+    class entity.InterpretationTestBoyko {
+        - aggressiveness : int
+        - alarm : int
+        - child_parent : int
+        - criticism : int
+        - date : LocalDateTime
+        - family_relation : int
+        - friends : int
+        - idInterpretationBoyko : int
+        - leisure : int
+        - memory_disorder : int
+        - overall_assessment : int
+        - overall_points : int
+        - self_service : int
+        - test : int
+        - work_activity : int
+        + getAggressiveness()
+        + getAlarm()
+        + getChild_parent()
+        + getCriticism()
+        + getDate()
+        + getFamily_relation()
+        + getField()
+        {static} + getFieldsNames()
+        + getFriends()
+        + getIdInterpretationBoyko()
+        + getLeisure()
+        + getMemory_disorder()
+        + getOverall_assessment()
+        + getOverall_points()
+        + getSelf_service()
+        + getTest()
+        + getWork_activity()
+        + setAggressiveness()
+        + setAlarm()
+        + setChild_parent()
+        + setCriticism()
+        + setDate()
+        + setFamily_relation()
+        + setField()
+        + setFriends()
+        + setIdInterpretationBoyko()
+        + setLeisure()
+        + setMemory_disorder()
+        + setOverall_assessment()
+        + setOverall_points()
+        + setSelf_service()
+        + setTest()
+        + setWork_activity()
+    }
+  }
+  
+
+  namespace entity {
+    class entity.InterpretationTestGAGE {
+        - date : LocalDateTime
+        - idInterpretationGAGE : int
+        - overall_points_risk_abuse : int
+        - overall_points_risk_dependency : int
+        - risk_abuse : String
+        - risk_dependency : String
+        - test : int
+        + getDate()
+        + getIdInterpretationGAGE()
+        + getOverall_points_risk_abuse()
+        + getOverall_points_risk_dependency()
+        + getRisk_abuse()
+        + getRisk_dependency()
+        + getTest()
+        + setDate()
+        + setIdInterpretationGAGE()
+        + setOverall_points_risk_abuse()
+        + setOverall_points_risk_dependency()
+        + setRisk_abuse()
+        + setRisk_dependency()
+        + setTest()
+        + toString()
+    }
+  }
+  
+
+  namespace entity {
+    class entity.TestBoyko {
+        - aggressiveness : int
+        - alarm : int
+        - attempt : int
+        - child_parent : int
+        - client : int
+        - criticism : int
+        - family_relation : int
+        - friends : int
+        - idTestBoyko : int
+        - leisure : int
+        - memory_disorder : int
+        - self_service : int
+        - work_activity : int
+        + getAggressiveness()
+        + getAlarm()
+        + getAttempt()
+        + getChild_parent()
+        + getClient()
+        + getCriticism()
+        + getFamily_relation()
+        + getField()
+        {static} + getFieldsNames()
+        + getFriends()
+        + getIdTestBoyko()
+        + getLeisure()
+        + getMemory_disorder()
+        + getSelf_service()
+        + getWork_activity()
+        + setAggressiveness()
+        + setAlarm()
+        + setAttempt()
+        + setChild_parent()
+        + setClient()
+        + setCriticism()
+        + setFamily_relation()
+        + setField()
+        + setFriends()
+        + setIdTestBoyko()
+        + setLeisure()
+        + setMemory_disorder()
+        + setSelf_service()
+        + setWork_activity()
+        + toString()
+    }
+  }
+  
+
+  namespace entity {
+    class entity.TestGAGE {
+        - alcohol : int
+        - attempt : int
+        - client : int
+        - company : int
+        - difficulties : int
+        - do_not_work : int
+        - do_not_work_when : int
+        - dose_reduction : int
+        - drink_alcohol_time : int
+        - fault : int
+        - fight : int
+        - how_use : int
+        - idTestGAGE : int
+        - injuries : int
+        - irritation : int
+        - loss_documents : int
+        - loss_documents_time : int
+        - loss_documents_when : int
+        - loss_loved_ones : int
+        - lots_alcohol : int
+        - lots_alcohol_time : int
+        - poor_health : int
+        - substances : int
+        - tone : int
+        - try_substances : String
+        - try_substances_choice : int
+        + TestGAGE()
+        + TestGAGE()
+        + getAlcohol()
+        + getAttempt()
+        + getClient()
+        + getCompany()
+        + getDifficulties()
+        + getDo_not_work()
+        + getDo_not_work_when()
+        + getDose_reduction()
+        + getDrink_alcohol_time()
+        + getFault()
+        + getField()
+        {static} + getFieldsNames()
+        + getFight()
+        + getHow_use()
+        + getIdTestGAGE()
+        + getInjuries()
+        + getIrritation()
+        + getLoss_documents()
+        + getLoss_documents_time()
+        + getLoss_documents_when()
+        + getLoss_loved_ones()
+        + getLots_alcohol()
+        + getLots_alcohol_time()
+        + getPoor_health()
+        + getSubstances()
+        + getTone()
+        + getTry_substances()
+        + getTry_substances_choice()
+        + setAlcohol()
+        + setAttempt()
+        + setClient()
+        + setCompany()
+        + setDifficulties()
+        + setDo_not_work()
+        + setDo_not_work_when()
+        + setDose_reduction()
+        + setDrink_alcohol_time()
+        + setFault()
+        + setField()
+        + setFight()
+        + setHow_use()
+        + setIdTestGAGE()
+        + setInjuries()
+        + setIrritation()
+        + setLoss_documents()
+        + setLoss_documents_time()
+        + setLoss_documents_when()
+        + setLoss_loved_ones()
+        + setLots_alcohol()
+        + setLots_alcohol_time()
+        + setPoor_health()
+        + setSubstances()
+        + setTone()
+        + setTry_substances()
+        + setTry_substances_choice()
+        + toString()
+    }
+  }
+  
+
+  namespace entity {
+    class entity.TypologicalGroup {
+        - client : int
+        - group : int
+        - idTypologicalGroup : int
+        - subgroup : int
+        - test_boyko : int
+        - test_gage : int
+        + getClient()
+        + getGroup()
+        + getIdTypologicalGroup()
+        + getSubgroup()
+        + getTest_boyko()
+        + getTest_gage()
+        + setClient()
+        + setGroup()
+        + setIdTypologicalGroup()
+        + setSubgroup()
+        + setTest_boyko()
+        + setTest_gage()
+    }
+  }
+  
+
+  namespace entity {
+    class entity.User {
+        - admin : boolean
+        - first_name : String
+        - last_name : String
+        - password : String
+        - patronymic : String
+        - position : String
+        - username : String
+        + User()
+        + User()
+        + getFirst_name()
+        + getLast_name()
+        + getPassword()
+        + getPatronymic()
+        + getPosition()
+        + getUsername()
+        + isAdmin()
+        {static} + load()
+        + readExternal()
+        {static} + save()
+        + setAdmin()
+        + setFirst_name()
+        + setLast_name()
+        + setPassword()
+        + setPatronymic()
+        + setPosition()
+        + setUsername()
+        + writeExternal()
+    }
+  }
+  
+
+  entity.User .up.|> java.io.Externalizable
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

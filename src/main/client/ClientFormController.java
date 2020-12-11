@@ -1,4 +1,4 @@
-package main;
+package main.client;
 
 import choices.ClientChoices;
 import choices.FieldControl;
@@ -15,6 +15,8 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
+import main.Alerts;
+import main.Application;
 import properties.Current;
 
 import java.io.IOException;
@@ -227,7 +229,7 @@ public class ClientFormController {
     private void delete(ActionEvent actionEvent) throws IOException {
         if (Current.CLIENT!=null) {
             if (table.delete() == 0) {
-                Application.stage(getClass(), (Stage) save.getScene().getWindow(), "../fxml/general.fxml", "Главная страница");
+                Application.stage(getClass(), (Stage) save.getScene().getWindow(), "../../fxml/general.fxml", "Главная страница");
             }
         } else Alerts.warning("Невозможно произвести удаление","Клиент не был создан, чтобы его удалить.");
     }

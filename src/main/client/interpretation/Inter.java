@@ -1,4 +1,4 @@
-package main.interpretation;
+package main.client.interpretation;
 
 public abstract class Inter<T> {
     public abstract void calculate(T test);

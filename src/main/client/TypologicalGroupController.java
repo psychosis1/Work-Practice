@@ -1,4 +1,4 @@
-package main;
+package main.client;
 
 import database.TestBoykoTable;
 import database.TestGAGETable;
@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import main.Alerts;
 import properties.Current;
 
 import java.util.Optional;

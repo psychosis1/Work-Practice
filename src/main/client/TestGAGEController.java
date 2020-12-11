@@ -1,4 +1,4 @@
-package main;
+package main.client;
 
 import choices.FieldControlGAGE;
 import choices.TestGAGEChoices;
@@ -14,7 +14,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-import main.interpretation.InterTestGAGE;
+import main.Alerts;
+import main.client.interpretation.InterTestGAGE;
 import properties.Current;
 
 import java.util.*;

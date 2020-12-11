@@ -1,4 +1,4 @@
-package main;
+package main.client;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,6 +9,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import main.Alerts;
+import main.Application;
 import properties.Current;
 
 import java.io.IOException;
@@ -57,14 +59,14 @@ public class ClientController {
     @FXML
     private void toClientForm(MouseEvent mouseEvent) throws IOException {
         setColorForLabel(mouseEvent);
-        updateWorkArea(FXMLLoader.load(getClass().getResource("../fxml/clientForm.fxml")));
+        updateWorkArea(FXMLLoader.load(getClass().getResource("../../fxml/clientForm.fxml")));
     }
 
     @FXML
     private void toTestBoyko(MouseEvent mouseEvent) throws IOException {
         if (Current.CLIENT != null) {
             setColorForLabel(mouseEvent);
-            updateWorkArea(FXMLLoader.load(getClass().getResource("../fxml/testBoyko.fxml")));
+            updateWorkArea(FXMLLoader.load(getClass().getResource("../../fxml/testBoyko.fxml")));
         }
     }
 
@@ -72,7 +74,7 @@ public class ClientController {
     private void toTestGAGE(MouseEvent mouseEvent) throws IOException {
         if (Current.CLIENT != null) {
             setColorForLabel(mouseEvent);
-            updateWorkArea(FXMLLoader.load(getClass().getResource("../fxml/testGAGE.fxml")));
+            updateWorkArea(FXMLLoader.load(getClass().getResource("../../fxml/testGAGE.fxml")));
         }
     }
 
@@ -80,7 +82,7 @@ public class ClientController {
     private void toTypologicalGroups(MouseEvent mouseEvent) throws IOException {
         if (Current.CLIENT != null) {
             setColorForLabel(mouseEvent);
-            updateWorkArea(FXMLLoader.load(getClass().getResource("../fxml/typologicalGroup.fxml")));
+            updateWorkArea(FXMLLoader.load(getClass().getResource("../../fxml/typologicalGroup.fxml")));
         }
     }
 
@@ -91,7 +93,7 @@ public class ClientController {
 
     @FXML
     private void toHome(ActionEvent actionEvent) throws IOException {
-        Application.stage(getClass(), (Stage) menu.getScene().getWindow(), "../fxml/general.fxml", "Главная страница");
+        Application.stage(getClass(), (Stage) menu.getScene().getWindow(), "../../fxml/general.fxml", "Главная страница");
     }
 
     @FXML
@@ -106,7 +108,7 @@ public class ClientController {
 
     @FXML
     private void toProfile(ActionEvent actionEvent) throws IOException {
-        Application.stage(getClass(), (Stage) menu.getScene().getWindow(), "../fxml/profile.fxml", "Профиль");
+        Application.stage(getClass(), (Stage) menu.getScene().getWindow(), "../../fxml/profile.fxml", "Профиль");
     }
 
 }
