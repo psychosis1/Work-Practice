@@ -1,5 +1,6 @@
 package main.admin;
 
+import com.mysql.cj.x.protobuf.MysqlxDatatypes;
 import database.ClientTable;
 import database.UserTable;
 import entity.Client;
@@ -11,16 +12,16 @@ import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import main.Alerts;
 import main.Application;
+import properties.Current;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 public class UserListController {
@@ -38,8 +39,11 @@ public class UserListController {
 
     private FilteredList<User> filteredData;
 
+
+
     @FXML
     public void initialize() {
+
         List<User> list = new UserTable().getUserList();
         ObservableList<User> users = FXCollections.observableList(list);
         table.setItems(users);
@@ -82,7 +86,17 @@ public class UserListController {
         Alerts.aboutUs();
     }
 
+    @FXML
     public void addNew(ActionEvent actionEvent) throws IOException {
         Application.stage(getClass(), (Stage) search.getScene().getWindow(), "../../fxml/addUser.fxml", "Добавление нового пользователя");
+    }
+
+    @FXML
+    public void clickRow(MouseEvent mouseEvent) throws IOException {
+        if (mouseEvent.getClickCount() == 2) //Проверка на двойной клик
+        {
+            Current.REFACTOR_USER = table.getSelectionModel().getSelectedItem();
+            Application.stage(getClass(), (Stage) search.getScene().getWindow(), "../../fxml/refactorUser.fxml", "Работа с пользователем");
+        }
     }
 }

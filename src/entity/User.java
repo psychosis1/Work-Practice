@@ -26,6 +26,7 @@ public class User implements Externalizable {
         this.fullName = checkNull(first_name)+" "+checkNull(last_name)+" "+checkNull(patronymic);
 
     }
+
     private String checkNull(String string){
         return (string!=null)?string:"";
     }

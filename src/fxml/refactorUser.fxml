@@ -10,20 +10,19 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.Blend?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="359.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.admin.AddUserController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="475.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.admin.RefactorUserController">
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <menus>
                 <Menu mnemonicParsing="false" text="Назад">
                     <items>
-                  <MenuItem mnemonicParsing="false" onAction="#toBack" text="Администрирование" />
-                        <MenuItem mnemonicParsing="false" onAction="#toHome" text="Главное окно" />
+                        <MenuItem mnemonicParsing="false" onAction="#toBack" text="Администрирование" />
+                  <MenuItem mnemonicParsing="false" onAction="#toHome" text="Главное окно" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="О нас">
@@ -49,6 +48,11 @@
                                 <Font size="14.0" />
                             </font>
                         </TextField>
+                        <Button mnemonicParsing="false" onAction="#changeUsername" text="Изменить">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Button>
                     </children>
                 </HBox>
                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0" VBox.vgrow="ALWAYS">
@@ -58,14 +62,19 @@
                                 <Font size="14.0" />
                             </font>
                         </Label>
-                        <PasswordField fx:id="password">
+                        <PasswordField fx:id="password" promptText="Введите новый пароль">
                             <font>
                                 <Font size="14.0" />
                             </font>
                         </PasswordField>
+                        <Button mnemonicParsing="false" onAction="#changePassword" text="Изменить">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Button>
                     </children>
                 </HBox>
-                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="564.0" spacing="30.0" VBox.vgrow="ALWAYS">
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0" VBox.vgrow="ALWAYS">
                     <children>
                         <Label alignment="CENTER_RIGHT" prefWidth="100.0" text="Имя">
                             <font>
@@ -77,6 +86,11 @@
                                 <Font size="14.0" />
                             </font>
                         </TextField>
+                        <Button mnemonicParsing="false" onAction="#changeFirstName" text="Изменить">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Button>
                     </children>
                 </HBox>
                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0" VBox.vgrow="ALWAYS">
@@ -91,6 +105,11 @@
                                 <Font size="14.0" />
                             </font>
                         </TextField>
+                        <Button mnemonicParsing="false" onAction="#changeLastName" text="Изменить">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Button>
                     </children>
                 </HBox>
                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0" VBox.vgrow="ALWAYS">
@@ -105,6 +124,11 @@
                                 <Font size="14.0" />
                             </font>
                         </TextField>
+                        <Button mnemonicParsing="false" onAction="#changePatronymic" text="Изменить">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Button>
                     </children>
                 </HBox>
                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0" VBox.vgrow="ALWAYS">
@@ -119,34 +143,40 @@
                                 <Font size="14.0" />
                             </font>
                         </TextField>
+                        <Button mnemonicParsing="false" onAction="#changePosition" text="Изменить">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Button>
                     </children>
                 </HBox>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="280.0" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="322.0" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                <children>
                   <Label alignment="CENTER_RIGHT" prefWidth="100.0" text="Тип прав">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="root" accessibleText="kllklk" prefHeight="25.0" prefWidth="175.0">
-                     <effect>
-                        <Blend />
-                     </effect>
-                  </ComboBox>
+                  <ComboBox fx:id="root" prefHeight="25.0" prefWidth="179.0" />
+                  <Button mnemonicParsing="false" onAction="#changeAdmin" text="Изменить">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
                </children>
             </HBox>
             </children>
         </VBox>
     </center>
    <bottom>
-      <ButtonBar buttonMinWidth="100.0" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <buttons>
-            <Button mnemonicParsing="false" onAction="#cancel" prefWidth="100.0" text="Отмена">
+          <Button mnemonicParsing="false" onAction="#cancel" prefWidth="100.0" text="Отмена">
                <font>
                   <Font size="16.0" />
                </font>
             </Button>
-          <Button mnemonicParsing="false" onAction="#addNew" prefWidth="100.0" text="Добавить">
+            <Button mnemonicParsing="false" onAction="#delete" prefWidth="100.0" text="Удалить">
                <font>
                   <Font size="16.0" />
                </font>

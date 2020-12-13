@@ -91,6 +91,33 @@ public class UserTable extends Database {
 
     }
 
+    public boolean deleteUser(String username){
+        String sql = "DELETE FROM User WHERE username = ?";
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setObject(1, username);
+            pstmt.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            log.log(Level.WARNING, e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean updateField(String username,String field, String value){
+        String sql = "UPDATE User SET " + field + " = ? WHERE username = ?";
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setObject(1, value);
+            pstmt.setObject(2, username);
+            pstmt.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            log.log(Level.WARNING, e.getMessage());
+            return false;
+        }
+    }
+
 
     public int update(String field, String value) {
         //создание sql запроса

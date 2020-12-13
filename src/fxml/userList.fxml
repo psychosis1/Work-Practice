@@ -62,7 +62,7 @@
                   <Insets bottom="10.0" />
                </padding>
             </FlowPane>
-            <TableView fx:id="table" prefHeight="294.0" prefWidth="600.0">
+            <TableView fx:id="table" prefHeight="294.0" prefWidth="600.0" onMouseClicked="#clickRow">
               <columns>
                   <TableColumn fx:id="login" prefWidth="136.0" text="Логин" />
                   <TableColumn fx:id="position" prefWidth="154.0" text="Должность" />
