@@ -77,7 +77,7 @@ public class RefactorUserController {
 
     @FXML
     public void changeUsername(ActionEvent actionEvent) {
-        if (passwordValue(username.getText()) && !username.getText().equals("")) {
+        if (usernameValue(username.getText()) && !username.getText().equals("")) {
             if (new UserTable().updateField(Current.REFACTOR_USER.getUsername(), "username", username.getText())) {
                 Alerts.info("Информация", "Успешно!", "Значение логина изменено.");
                 Current.REFACTOR_USER.setUsername(username.getText());
