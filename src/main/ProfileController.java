@@ -146,8 +146,10 @@ public class ProfileController {
     }
 
     @FXML
-    private void toAdmin(ActionEvent actionEvent) {
-
+    private void toAdmin(ActionEvent actionEvent) throws IOException {
+        if(Current.USER.isAdmin())
+            Application.stage(getClass(), (Stage) username.getScene().getWindow(), "../fxml/userList.fxml", "Администрирование");
+        else Alerts.warning("Недостаточно прав!","Данный аккаунт не имеет прав администратора.");
     }
 
     @FXML

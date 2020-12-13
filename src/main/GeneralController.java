@@ -85,7 +85,6 @@ public class GeneralController {
 
     @FXML
     private void toAdmin(ActionEvent actionEvent) throws IOException {
-//        Current.USER.isAdmin();
         if(Current.USER.isAdmin())
         Application.stage(getClass(), (Stage) menu.getScene().getWindow(), "../fxml/userList.fxml", "Администрирование");
         else Alerts.warning("Недостаточно прав!","Данный аккаунт не имеет прав администратора.");

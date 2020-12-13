@@ -37,28 +37,36 @@ public class RefactorUserController {
     @FXML
     public ComboBox<String> root;
 
+    public boolean passwordValue(String value) {
+        return value.matches("^(?=.*\\d)(?=.*[a-z-a-я])(?=.*[A-Z-А-Я]).{8,}$");
+    }
+
+    public boolean usernameValue(String value) {
+        return value.matches("\\b[a-z-а-я-A-Z-А-Я][a-z-а-я-A-Z-А-Я-0-9\\-._]{3,}\\b");
+    }
+
     @FXML
     public void initialize() {
-        root.setItems(FXCollections.observableList(Arrays.asList((new String[] {"администратор","стандартные"}).clone())));
+        root.setItems(FXCollections.observableList(Arrays.asList((new String[]{"администратор", "стандартные"}).clone())));
 
         username.setText(Current.REFACTOR_USER.getUsername());
         firstName.setText(Current.REFACTOR_USER.getFirst_name());
         lastName.setText(Current.REFACTOR_USER.getLast_name());
         patronymic.setText(Current.REFACTOR_USER.getPatronymic());
         position.setText(Current.REFACTOR_USER.getPosition());
-        root.setValue((Current.REFACTOR_USER.isAdmin())?"администратор":"стандартные");
+        root.setValue((Current.REFACTOR_USER.isAdmin()) ? "администратор" : "стандартные");
 
     }
 
     @FXML
     public void toBack(ActionEvent actionEvent) throws IOException {
-        Current.REFACTOR_USER=null;
+        Current.REFACTOR_USER = null;
         Application.stage(getClass(), (Stage) username.getScene().getWindow(), "../../fxml/userList.fxml", "Администрирование");
     }
 
     @FXML
     public void toHome(ActionEvent actionEvent) throws IOException {
-        Current.REFACTOR_USER=null;
+        Current.REFACTOR_USER = null;
         Application.stage(getClass(), (Stage) username.getScene().getWindow(), "../../fxml/general.fxml", "Главная страница");
     }
 
@@ -69,67 +77,74 @@ public class RefactorUserController {
 
     @FXML
     public void changeUsername(ActionEvent actionEvent) {
-        if(new UserTable().updateField(Current.REFACTOR_USER.getUsername(),"username",username.getText())) {
-            Alerts.info("Информация", "Успешно!", "Значение логина изменено.");
-            Current.REFACTOR_USER.setUsername(username.getText());
-        }
-        else Alerts.warning("Изменение не удалось!","Что-то пошло не так. Возможно такой логин существует.");
+        if (passwordValue(username.getText()) && !username.getText().equals("")) {
+            if (new UserTable().updateField(Current.REFACTOR_USER.getUsername(), "username", username.getText())) {
+                Alerts.info("Информация", "Успешно!", "Значение логина изменено.");
+                Current.REFACTOR_USER.setUsername(username.getText());
+                Current.USER.setUsername(username.getText());
+            } else Alerts.warning("Изменение не удалось!", "Что-то пошло не так. Возможно такой логин существует.");
+        } else Alerts.warning( "Не заполнено или заполнено неправильно поле!", "Логин должен включать как миниму 3 знака. " +
+                "Может состоять из цифр, букв, знаков: - _ .\nТакже не должен содержать пробелы и должен начинаться с буквы.");
     }
 
     @FXML
     public void changePassword(ActionEvent actionEvent) {
-        if(new UserTable().updateField(Current.REFACTOR_USER.getUsername(),"password",password.getText()))
-            Alerts.info("Информация","Успешно!","Значение пароля изменено.");
-        else Alerts.warning("Изменение не удалось!","Что-то пошло не так.");
+        if (passwordValue(password.getText()) && !password.getText().equals("")) {
+            if (new UserTable().updateField(Current.REFACTOR_USER.getUsername(), "password", password.getText()))
+                Alerts.info("Информация", "Успешно!", "Значение пароля изменено.");
+            else Alerts.warning("Изменение не удалось!", "Что-то пошло не так.");
+        }else Alerts.warning( "Не заполнено или заполнено неправильно поле!", "Пароль должен включать как миниму: 8 знаков," +
+                " 1 большую букву, 1 маленькую букву, 1 цифру.\nТакже не должен содержать пробелы");
+
     }
 
     @FXML
     public void changeFirstName(ActionEvent actionEvent) {
-        if(new UserTable().updateField(Current.REFACTOR_USER.getUsername(),"first_name",firstName.getText()))
-            Alerts.info("Информация","Успешно!","Значение имени изменено.");
-        else Alerts.warning("Изменение не удалось!","Что-то пошло не так.");
+        if (new UserTable().updateField(Current.REFACTOR_USER.getUsername(), "first_name", firstName.getText()))
+            Alerts.info("Информация", "Успешно!", "Значение имени изменено.");
+        else Alerts.warning("Изменение не удалось!", "Что-то пошло не так.");
     }
 
     @FXML
     public void changeLastName(ActionEvent actionEvent) {
-        if(new UserTable().updateField(Current.REFACTOR_USER.getUsername(),"last_name",lastName.getText()))
-            Alerts.info("Информация","Успешно!","Значение фамилии изменено.");
-        else Alerts.warning("Изменение не удалось!","Что-то пошло не так.");
+        if (new UserTable().updateField(Current.REFACTOR_USER.getUsername(), "last_name", lastName.getText()))
+            Alerts.info("Информация", "Успешно!", "Значение фамилии изменено.");
+        else Alerts.warning("Изменение не удалось!", "Что-то пошло не так.");
     }
 
     @FXML
     public void changePatronymic(ActionEvent actionEvent) {
-        if(new UserTable().updateField(Current.REFACTOR_USER.getUsername(),"patronymic",patronymic.getText()))
-            Alerts.info("Информация","Успешно!","Значение отчества изменено.");
-        else Alerts.warning("Изменение не удалось!","Что-то пошло не так.");
+        if (new UserTable().updateField(Current.REFACTOR_USER.getUsername(), "patronymic", patronymic.getText()))
+            Alerts.info("Информация", "Успешно!", "Значение отчества изменено.");
+        else Alerts.warning("Изменение не удалось!", "Что-то пошло не так.");
     }
 
     @FXML
     public void changePosition(ActionEvent actionEvent) {
-        if(new UserTable().updateField(Current.REFACTOR_USER.getUsername(),"position",position.getText()))
-            Alerts.info("Информация","Успешно!","Значение должности изменено.");
-        else Alerts.warning("Изменение не удалось!","Что-то пошло не так.");
+        if (new UserTable().updateField(Current.REFACTOR_USER.getUsername(), "position", position.getText()))
+            Alerts.info("Информация", "Успешно!", "Значение должности изменено.");
+        else Alerts.warning("Изменение не удалось!", "Что-то пошло не так.");
     }
 
     @FXML
     public void changeAdmin(ActionEvent actionEvent) {
-        if(new UserTable().updateField(Current.REFACTOR_USER.getUsername(),"admin",(root.getValue().equals("администратор"))?"1":"0"))
-            Alerts.info("Информация","Успешно!","Значение прав изменено.");
-        else Alerts.warning("Изменение не удалось!","Что-то пошло не так.");
+        if (new UserTable().updateField(Current.REFACTOR_USER.getUsername(), "admin", (root.getValue().equals("администратор")) ? "1" : "0"))
+            Alerts.info("Информация", "Успешно!", "Значение прав изменено.");
+        else Alerts.warning("Изменение не удалось!", "Что-то пошло не так.");
     }
 
     @FXML
     public void cancel(ActionEvent actionEvent) throws IOException {
-        Current.REFACTOR_USER=null;
+        Current.REFACTOR_USER = null;
         Application.stage(getClass(), (Stage) username.getScene().getWindow(), "../../fxml/userList.fxml", "Администрирование");
     }
 
     @FXML
     public void delete(ActionEvent actionEvent) throws IOException {
-        if(new UserTable().deleteUser(Current.REFACTOR_USER.getUsername())){
-            Current.REFACTOR_USER=null;
+        if (new UserTable().deleteUser(Current.REFACTOR_USER.getUsername()) && !Current.REFACTOR_USER.getUsername().equals(Current.USER.getUsername())) {
+            Current.REFACTOR_USER = null;
             Application.stage(getClass(), (Stage) username.getScene().getWindow(), "../../fxml/userList.fxml", "Администрирование");
-        } else Alerts.warning("Удаление не удалось!","Что-то пошло не так.");
+        } else Alerts.warning("Удаление не удалось!", "Что-то пошло не так.");
 
     }
 }

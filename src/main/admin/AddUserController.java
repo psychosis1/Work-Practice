@@ -36,6 +36,15 @@ public class AddUserController {
     @FXML
     private ComboBox<String> root;
 
+
+
+    public boolean passwordValue(String value) {
+        return value.matches("^(?=.*\\d)(?=.*[a-z-a-я])(?=.*[A-Z-А-Я]).{8,}$");
+    }
+    public boolean usernameValue(String value) {
+        return value.matches("\\b[a-z-а-я-A-Z-А-Я][a-z-а-я-A-Z-А-Я-0-9\\-._]{3,}\\b");
+    }
+
     @FXML
     public void initialize() {
         root.setItems(FXCollections.observableList(Arrays.asList((new String[] {"администратор","стандартные"}).clone())));
@@ -59,10 +68,12 @@ public class AddUserController {
     }
 
     public void addNew(ActionEvent actionEvent) throws IOException {
-        if(username.getText().equals("")){
-            Alerts.warning( "Не заполнено обязательное поле!", "Поле 'логин' должно быть заполнено.");
-        }else if(password.getText().equals("")){
-            Alerts.warning( "Не заполнено обязательное поле!", "Поле 'пароль' должно быть заполнено.");
+        if(username.getText().equals("") || !usernameValue(username.getText())){
+            Alerts.warning( "Не заполнено или заполнено неправильно поле!", "Логин должен включать как миниму 3 знака. " +
+                    "Может состоять из цифр, букв, знаков: - _ .\nТакже не должен содержать пробелы и должен начинаться с буквы.");
+        }else if(password.getText().equals("") || !passwordValue(password.getText())){
+            Alerts.warning( "Не заполнено или заполнено неправильно поле!", "Пароль должен включать как миниму: 8 знаков," +
+                    " 1 большую букву, 1 маленькую букву, 1 цифру.\nТакже не должен содержать пробелы");
         }else {
             if(new UserTable().createNew(username.getText(),
                     password.getText(),
