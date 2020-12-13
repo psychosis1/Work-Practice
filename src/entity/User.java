@@ -10,6 +10,7 @@ public class User implements Externalizable {
     private String patronymic;
     private String position;
     private boolean admin;
+    private String fullName;
 
     public User() {
     }
@@ -22,6 +23,11 @@ public class User implements Externalizable {
         this.patronymic = patronymic;
         this.position = position;
         this.admin = admin;
+        this.fullName = checkNull(first_name)+" "+checkNull(last_name)+" "+checkNull(patronymic);
+
+    }
+    private String checkNull(String string){
+        return (string!=null)?string:"";
     }
 
     public String getUsername() {
@@ -78,6 +84,14 @@ public class User implements Externalizable {
 
     public void setAdmin(boolean admin) {
         this.admin = admin;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     @Override

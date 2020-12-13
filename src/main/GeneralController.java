@@ -39,6 +39,8 @@ public class GeneralController {
     public void initialize() {
         ObservableList<Client> clients = FXCollections.observableList(new ClientTable().selectClientsForGeneral());
         table.setItems(clients);
+
+
         code.setCellValueFactory(new PropertyValueFactory<>("code"));
         full_name.setCellValueFactory(new PropertyValueFactory<>("full_name"));
         filteredData = new FilteredList<>(clients, p -> true);
@@ -82,8 +84,8 @@ public class GeneralController {
     }
 
     @FXML
-    private void toAdmin(ActionEvent actionEvent) {
-
+    private void toAdmin(ActionEvent actionEvent) throws IOException {
+        Application.stage(getClass(), (Stage) menu.getScene().getWindow(), "../fxml/userList.fxml", "Администрирование");
     }
 
     @FXML
