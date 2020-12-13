@@ -23,6 +23,9 @@ public class ProfileController {
     @FXML
     private PasswordField password;
 
+    /**
+     * Инициализация окна
+     */
     @FXML
     public void initialize() {
         username.setText(Current.USER.getUsername());
@@ -32,18 +35,33 @@ public class ProfileController {
         position.setText(Current.USER.getPosition());
     }
 
+    /**
+     * Смена пароля
+     */
     private void changePassword() {
         PasswordDialog dialog = new PasswordDialog();
         change(dialog, "Смена пароля", "Новый пароль:");
 
     }
 
+    /**
+     * Смена данных кроме пароля
+     *
+     * @param header
+     * @param content
+     */
     private void changeNotPassword(String header, String content) {
         TextInputDialog dialog = new TextInputDialog();
         change(dialog, header, content);
     }
 
-
+    /**
+     * Изменения
+     *
+     * @param dialog  Диалог
+     * @param header  Заголовок
+     * @param content Контент
+     */
     private void change(Dialog<String> dialog, String header, String content) {
         dialog.setTitle("Изменение профиля");
         dialog.setHeaderText(header);
@@ -59,6 +77,11 @@ public class ProfileController {
                         -> this.value = "");
     }
 
+    /**
+     * Установка логина
+     *
+     * @param actionEvent Событие
+     */
     @FXML
     private void setUsername(ActionEvent actionEvent) {
         changeNotPassword("Смена логина", "Новый логин");
@@ -73,10 +96,20 @@ public class ProfileController {
         }
     }
 
+    /**
+     * Валидация логина
+     *
+     * @return Булевое значение
+     */
     public boolean usernameValue() {
         return value.matches("\\b[a-z-а-я-A-Z-А-Я][a-z-а-я-A-Z-А-Я-0-9\\-._]{3,}\\b");
     }
 
+    /**
+     * Установка пароля
+     *
+     * @param actionEvent Событие
+     */
     @FXML
     private void setPassword(ActionEvent actionEvent) {
         if (!password.getText().equals(Current.USER.getPassword())) {
@@ -92,10 +125,20 @@ public class ProfileController {
         }
     }
 
+    /**
+     * Валидация пароля
+     *
+     * @return Булевое значение
+     */
     public boolean passwordValue() {
         return value.matches("^(?=.*\\d)(?=.*[a-z-a-я])(?=.*[A-Z-А-Я]).{8,}$");
     }
 
+    /**
+     * Устновка имени
+     *
+     * @param actionEvent Событие
+     */
     @FXML
     private void setFirstName(ActionEvent actionEvent) {
         changeNotPassword("Смена имени", "Новое имя");
@@ -107,6 +150,11 @@ public class ProfileController {
         }
     }
 
+    /**
+     * Установка фамилии
+     *
+     * @param actionEvent Событие
+     */
     @FXML
     private void setLastName(ActionEvent actionEvent) {
         changeNotPassword("Смена фамилии", "Новая фамилия");
@@ -118,6 +166,11 @@ public class ProfileController {
         }
     }
 
+    /**
+     * Установка отчества
+     *
+     * @param actionEvent Событие
+     */
     @FXML
     private void setPatronymic(ActionEvent actionEvent) {
         changeNotPassword("Смена отчества", "Новое отчество");
@@ -129,6 +182,11 @@ public class ProfileController {
         }
     }
 
+    /**
+     * Установка должности
+     *
+     * @param actionEvent Событие
+     */
     @FXML
     private void setPosition(ActionEvent actionEvent) {
         changeNotPassword("Смена должности", "Новая должность");
@@ -140,23 +198,46 @@ public class ProfileController {
         }
     }
 
+    /**
+     * Выход из аккаунта
+     *
+     * @param actionEvent Событие
+     * @throws IOException Ошибка выхода из аккаунта
+     */
     @FXML
     private void logout(ActionEvent actionEvent) throws IOException {
         Application.logout(getClass(), (Stage) username.getScene().getWindow());
     }
 
+    /**
+     * Перерход к модулю администрирования
+     *
+     * @param actionEvent Событие
+     * @throws IOException Ошибка перехода
+     */
     @FXML
     private void toAdmin(ActionEvent actionEvent) throws IOException {
-        if(Current.USER.isAdmin())
+        if (Current.USER.isAdmin())
             Application.stage(getClass(), (Stage) username.getScene().getWindow(), "../fxml/userList.fxml", "Администрирование");
-        else Alerts.warning("Недостаточно прав!","Данный аккаунт не имеет прав администратора.");
+        else Alerts.warning("Недостаточно прав!", "Данный аккаунт не имеет прав администратора.");
     }
 
+    /**
+     * Информация о нас
+     *
+     * @param actionEvent Событие
+     */
     @FXML
     private void aboutUs(ActionEvent actionEvent) {
         Alerts.aboutUs();
     }
 
+    /**
+     * Переход на главную страницу
+     *
+     * @param actionEvent Событие
+     * @throws IOException Ошибка перехода
+     */
     @FXML
     private void toHome(ActionEvent actionEvent) throws IOException {
         Application.stage(getClass(), (Stage) username.getScene().getWindow(), "../fxml/general.fxml", "Главная страница");

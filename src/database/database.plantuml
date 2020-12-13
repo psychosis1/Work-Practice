@@ -76,8 +76,12 @@ title __DATABASE's Class Diagram__\n
   namespace database {
     class database.UserTable {
         {static} - log : Logger
+        + createNew()
+        + deleteUser()
+        + getUserList()
         + selectUser()
         + update()
+        + updateField()
     }
   }
   

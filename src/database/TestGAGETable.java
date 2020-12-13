@@ -13,6 +13,12 @@ import java.util.logging.Logger;
 public class TestGAGETable extends Database {
     private static final Logger log = Logger.getLogger(TestGAGETable.class.getName());
 
+    /**
+     * Вставка теста GAGE
+     *
+     * @param testGAGE Тест GAGE
+     * @return Код операции
+     */
     public int insert(TestGAGE testGAGE) {
         List<String> names = TestGAGE.getFieldsNames();
         names.remove(0); //удаление из списка имен idTestGAGE
@@ -49,6 +55,11 @@ public class TestGAGETable extends Database {
         return -1;
     }
 
+    /**
+     * Обновление теста GAGE
+     *
+     * @param testGAGE Тест GAGE
+     */
     public void update(TestGAGE testGAGE) {
         List<String> names = TestGAGE.getFieldsNames();
         names.remove(0); //удаление из списка имен idTestGAGE
@@ -77,6 +88,12 @@ public class TestGAGETable extends Database {
         }
     }
 
+    /**
+     * Удаление теста GAGE
+     *
+     * @param testGAGE Тест GAGE
+     * @return Код операции
+     */
     public int delete(TestGAGE testGAGE) {
         //создание sql запроса
         String sql = "DELETE FROM TestGAGE WHERE idTestGAGE = ?";
@@ -92,6 +109,12 @@ public class TestGAGETable extends Database {
         return 0;
     }
 
+    /**
+     * Выбор теста GAGE
+     *
+     * @param testGAGE Тест GAGE
+     * @return Код операции
+     */
     public int selectTestGAGE(TestGAGE testGAGE) {
         String sql = "SELECT * FROM TestGAGE WHERE client = ? AND attempt = ?";
 
@@ -103,8 +126,8 @@ public class TestGAGETable extends Database {
             if (!rs.next()) //пустая выборка
                 return 0;
             ResultSetMetaData rsmd = rs.getMetaData();
-            for (int i=1;i<=rsmd.getColumnCount();i++) {
-                testGAGE.setField(rsmd.getColumnName(i),rs.getObject(i));
+            for (int i = 1; i <= rsmd.getColumnCount(); i++) {
+                testGAGE.setField(rsmd.getColumnName(i), rs.getObject(i));
             }
 
         } catch (SQLException e) {

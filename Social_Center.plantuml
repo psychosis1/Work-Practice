@@ -183,6 +183,30 @@ title __SOCIAL_CENTER's Class Diagram__\n
   
 
   namespace main {
+    namespace admin {
+      class main.admin.AddUserController {
+      }
+    }
+  }
+  
+
+  namespace main {
+    namespace admin {
+      class main.admin.RefactorUserController {
+      }
+    }
+  }
+  
+
+  namespace main {
+    namespace admin {
+      class main.admin.UserListController {
+      }
+    }
+  }
+  
+
+  namespace main {
     namespace client {
       class main.client.ClientController {
       }

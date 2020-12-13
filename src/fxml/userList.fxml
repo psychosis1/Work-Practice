@@ -11,9 +11,15 @@
         <menus>
           <Menu mnemonicParsing="false" text="Домой">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#toHome" text="На главную" />
+                  <MenuItem mnemonicParsing="false" onAction="#toHome" text="Главное окно" />
                </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Аккаунт">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#toProfile" text="Профиль" />
+                  <MenuItem mnemonicParsing="false" onAction="#logout" text="Выход" />
+              </items>
+            </Menu>
           <Menu mnemonicParsing="false" text="О нас">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#aboutUs" text="Информация" />

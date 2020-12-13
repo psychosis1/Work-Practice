@@ -23,12 +23,12 @@ public class User implements Externalizable {
         this.patronymic = patronymic;
         this.position = position;
         this.admin = admin;
-        this.fullName = checkNull(first_name)+" "+checkNull(last_name)+" "+checkNull(patronymic);
+        this.fullName = checkNull(first_name) + " " + checkNull(last_name) + " " + checkNull(patronymic);
 
     }
 
-    private String checkNull(String string){
-        return (string!=null)?string:"";
+    private String checkNull(String string) {
+        return (string != null) ? string : "";
     }
 
     public String getUsername() {
@@ -95,6 +95,12 @@ public class User implements Externalizable {
         this.fullName = fullName;
     }
 
+    /**
+     * Запись аттрибутов класса
+     *
+     * @param out Запись класса
+     * @throws IOException Ошибка записи объекта
+     */
     @Override
     public void writeExternal(ObjectOutput out) throws IOException {
         out.writeObject(username);
@@ -106,6 +112,13 @@ public class User implements Externalizable {
         out.writeObject(admin);
     }
 
+    /**
+     * Чтение аттрибутов класса
+     *
+     * @param in Чтение класса
+     * @throws IOException            Ошибка чтения класса
+     * @throws ClassNotFoundException Ошибка поиска класса
+     */
     @Override
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
         username = (String) in.readObject();
@@ -117,12 +130,27 @@ public class User implements Externalizable {
         admin = (boolean) in.readObject();
     }
 
+    /**
+     * Сохранение пользователя
+     *
+     * @param path Путь до файла
+     * @param user Пользователь
+     * @throws IOException Ошибка сохранения
+     */
     public static void save(String path, User user) throws IOException {
         try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(path));) {
             objectOutputStream.writeObject(user);
         }
     }
 
+    /**
+     * Загрузка пользователя из файла
+     *
+     * @param path Путь до файла
+     * @return Пользователь
+     * @throws IOException            Ошибка загрузки пользователя
+     * @throws ClassNotFoundException Ошибка поиска класса
+     */
     public static User load(String path) throws IOException, ClassNotFoundException {
         try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(path))) {
             return (User) objectInputStream.readObject();

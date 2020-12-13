@@ -10,6 +10,12 @@ import java.util.logging.Logger;
 public class InterpretationTestBoykoTable extends Database {
     private static final Logger log = Logger.getLogger(InterpretationTestBoykoTable.class.getName());
 
+    /**
+     * Вставка интерпретации Бойко
+     *
+     * @param inter Интерпретация Бойко
+     * @return Код операции
+     */
     public int insert(InterpretationTestBoyko inter) {
         List<String> names = InterpretationTestBoyko.getFieldsNames();
         names.remove(0); //удаление из списка имен id
@@ -46,6 +52,11 @@ public class InterpretationTestBoykoTable extends Database {
         return -1;
     }
 
+    /**
+     * Обновление интерпретации Бойко
+     *
+     * @param inter Интерпретация Бойко
+     */
     public void update(InterpretationTestBoyko inter) {
         List<String> names = InterpretationTestBoyko.getFieldsNames();
         names.remove(0); //удаление из списка имен id
@@ -74,6 +85,11 @@ public class InterpretationTestBoykoTable extends Database {
         }
     }
 
+    /**
+     * Выбор интерпретации Бойко
+     *
+     * @param inter Интерпретация Бойко
+     */
     public void select(InterpretationTestBoyko inter) {
         String sql = "SELECT * FROM InterpretationBoyko WHERE test = ?";
 

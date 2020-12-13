@@ -9,7 +9,7 @@ public class Properties {
     // Настройки для подключения к БД
     public static final String HOST = "localhost";
     public static final int PORT = 3306;
-    public static final String DATABASE = "work_practice";
+    public static final String DATABASE = "social_center";
     public static final String USER = "root";
     public static final String PASSWORD = "1234";
 

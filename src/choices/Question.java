@@ -11,19 +11,32 @@ public class Question {
         this.values = value;
     }
 
+    /**
+     * Получение списка вариантов ответов
+     *
+     * @return Список вариантво ответа
+     */
     public List<String> getNames() {
         return names;
     }
 
-    public List<Integer> getValues() {
-        return values;
-    }
-
+    /**
+     * Получение балла по выборанному ответу
+     *
+     * @param name Выбранный ответ
+     * @return Балл
+     */
     public int getValue(String name) {
         int index = names.indexOf(name);
         return values.get(index);
     }
 
+    /**
+     * Получение ответа по баллу
+     *
+     * @param value Балл
+     * @return Ответ
+     */
     public String getName(int value) {
         int index = values.indexOf(value);
         return names.get(index);

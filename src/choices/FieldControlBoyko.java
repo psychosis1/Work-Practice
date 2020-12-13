@@ -16,22 +16,47 @@ public class FieldControlBoyko {
         this.choices = choices;
     }
 
+    /**
+     * Получение имени поля
+     *
+     * @return Имя поля
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Получение русского наименования поля
+     *
+     * @return Русское наименование поля
+     */
     public String getRusName() {
         return rusName;
     }
 
+    /**
+     * Устновка выбора поля
+     *
+     * @return Выбор поля
+     */
     public List<String> getChoices() {
         return choices;
     }
 
+    /**
+     * Получение группы RadioButton
+     *
+     * @return Группа RadioButton
+     */
     public ToggleGroup getToggleGroup() {
         return toggleGroup;
     }
 
+    /**
+     * Устновка группы RadioButton
+     *
+     * @param toggleGroup Группа RadioButton
+     */
     public void setToggleGroup(ToggleGroup toggleGroup) {
         this.toggleGroup = toggleGroup;
     }

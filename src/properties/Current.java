@@ -8,6 +8,9 @@ public class Current {
     public static Client CLIENT = null;
     public static User REFACTOR_USER = null;
 
+    /**
+     * Запрет на создание конструктора
+     */
     private Current() {
     }
 }

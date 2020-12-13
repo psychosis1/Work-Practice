@@ -12,6 +12,11 @@ import java.util.logging.Logger;
 public class ClientTable extends Database {
     private static final Logger log = Logger.getLogger(ClientTable.class.getName());
 
+    /**
+     * Получение всех клиентов
+     *
+     * @return Список клиентов
+     */
     public List<Client> selectClientsForGeneral() {
         List<Client> clients = new ArrayList<>();
         String sql = "SELECT * FROM Client";
@@ -62,6 +67,12 @@ public class ClientTable extends Database {
         return clients;
     }
 
+    /**
+     * Вставка нового клиента
+     *
+     * @param client Клиент
+     * @return Код операции
+     */
     public int insert(Client client) {
         List<String> names = Client.getFieldsNames();
         names.remove(0); //удаление из списка имен idClient
@@ -100,6 +111,9 @@ public class ClientTable extends Database {
         return 0;
     }
 
+    /**
+     * Обновление данных клиента
+     */
     public void update() {
         List<String> names = Client.getFieldsNames();
         names.remove(0); //удаление из списка имен idClient
@@ -127,6 +141,11 @@ public class ClientTable extends Database {
         }
     }
 
+    /**
+     * Удаление клиента
+     *
+     * @return Код операции
+     */
     public int delete() {
         //создание sql запроса
         String sql = "DELETE FROM Client WHERE idClient = ?";

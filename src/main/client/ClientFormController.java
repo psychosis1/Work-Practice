@@ -40,6 +40,9 @@ public class ClientFormController {
     @FXML
     private Button save;
 
+    /**
+     * Инициализация окна
+     */
     @FXML
     public void initialize() {
         //установка полей
@@ -96,6 +99,11 @@ public class ClientFormController {
             clientNotNull(); //если клиент существует
     }
 
+    /**
+     * Установка отступов для правой колонки
+     *
+     * @param control Контроллер
+     */
     private void viewRightColumn(Control control) {
         GridPane.setMargin(control, new Insets(20));
         //растягивание по горизонтали
@@ -103,6 +111,11 @@ public class ClientFormController {
         GridPane.setHgrow(control, Priority.ALWAYS);
     }
 
+    /**
+     * Запрет на ввод символов в контроллер для чисел
+     *
+     * @param spinnerInteger Контроллер для чисел
+     */
     private void formatSpinner(Spinner<Integer> spinnerInteger) {
         NumberFormat format = NumberFormat.getIntegerInstance();
         UnaryOperator<TextFormatter.Change> filter = c -> {
@@ -124,6 +137,9 @@ public class ClientFormController {
         spinnerInteger.getEditor().setTextFormatter(priceFormatter);
     }
 
+    /**
+     * Установка полей
+     */
     private void setFields() {
         LinkedHashMap<String, ObservableList<String>> rusChoice = new LinkedHashMap<>();
         rusChoice.put("Код", null);
@@ -170,6 +186,9 @@ public class ClientFormController {
 
     }
 
+    /**
+     * Клиент не пустой
+     */
     private void clientNotNull() {
         for (FieldControl field : fields) {
             if (field.getChoices() == null) {
@@ -191,6 +210,11 @@ public class ClientFormController {
         save.setText("Изменить");
     }
 
+    /**
+     * Добавление или изменение клиента
+     *
+     * @param actionEvent Событие
+     */
     @FXML
     private void saveChanges(ActionEvent actionEvent) {
         if (save.getText().equals("Добавить")) {
@@ -202,6 +226,12 @@ public class ClientFormController {
         }
     }
 
+    /**
+     * Сохранение информации в клиенте
+     *
+     * @param client Клиент
+     * @return Класс для работы с БД
+     */
     private ClientTable saveInClient(Client client) {
         for (FieldControl field : fields) {
             if (field.getChoices() == null) {
@@ -225,12 +255,18 @@ public class ClientFormController {
         return table;
     }
 
+    /**
+     * Удаление клиента
+     *
+     * @param actionEvent Событие
+     * @throws IOException Ошибка удаления
+     */
     @FXML
     private void delete(ActionEvent actionEvent) throws IOException {
-        if (Current.CLIENT!=null) {
+        if (Current.CLIENT != null) {
             if (table.delete() == 0) {
                 Application.stage(getClass(), (Stage) save.getScene().getWindow(), "../../fxml/general.fxml", "Главная страница");
             }
-        } else Alerts.warning("Невозможно произвести удаление","Клиент не был создан, чтобы его удалить.");
+        } else Alerts.warning("Невозможно произвести удаление", "Клиент не был создан, чтобы его удалить.");
     }
 }

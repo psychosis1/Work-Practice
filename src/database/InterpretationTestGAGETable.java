@@ -9,6 +9,12 @@ import java.util.logging.Logger;
 public class InterpretationTestGAGETable extends Database {
     private static final Logger log = Logger.getLogger(InterpretationTestGAGETable.class.getName());
 
+    /**
+     * Вставка интерпретации теста GAGE
+     *
+     * @param interpretationTestGAGE Интерпретация GAGE
+     * @return Код операции
+     */
     public int insert(InterpretationTestGAGE interpretationTestGAGE) {
         //создание sql запроса
         String sql = "INSERT INTO InterpretationGAGE (test,overall_points_risk_abuse,risk_abuse,overall_points_risk_dependency,risk_dependency,date)" +
@@ -36,6 +42,11 @@ public class InterpretationTestGAGETable extends Database {
         return -1;
     }
 
+    /**
+     * Обновление интерпретации GAGE
+     *
+     * @param interpretationTestGAGE Интерпретация GAGE
+     */
     public void update(InterpretationTestGAGE interpretationTestGAGE) {
         //создание sql запроса
         String sql = "UPDATE InterpretationGAGE SET overall_points_risk_abuse = ?, risk_abuse = ?, overall_points_risk_dependency = ?," +
@@ -56,6 +67,11 @@ public class InterpretationTestGAGETable extends Database {
         }
     }
 
+    /**
+     * Выбор интерпретации GAGE
+     *
+     * @param interpretationTestGAGE Интерпретация GAGE
+     */
     public void select(InterpretationTestGAGE interpretationTestGAGE) {
         String sql = "SELECT * FROM InterpretationGAGE WHERE test = ?";
 

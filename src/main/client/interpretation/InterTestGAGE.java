@@ -15,6 +15,11 @@ import java.util.List;
 public class InterTestGAGE extends Inter<TestGAGE> {
     private final InterpretationTestGAGE inter = new InterpretationTestGAGE();
 
+    /**
+     * Подсчет баллов
+     *
+     * @param testGAGE Тест GAGE
+     */
     @Override
     public void calculate(TestGAGE testGAGE) {
         testAndDate(testGAGE.getIdTestGAGE()); //установка id теста и текущего времени
@@ -45,12 +50,20 @@ public class InterTestGAGE extends Inter<TestGAGE> {
         setText();
     }
 
+    /**
+     * Устновка id теста и текущего времени
+     *
+     * @param id id теста GAGE
+     */
     @Override
     public void testAndDate(int id) {
         inter.setTest(id);
         inter.setDate(LocalDateTime.now());
     }
 
+    /**
+     * Установка текста
+     */
     public void setText() {
         if (inter.getOverall_points_risk_abuse() >= 3)
             inter.setRisk_abuse("выраженные признаки злоупотребления");
@@ -61,6 +74,9 @@ public class InterTestGAGE extends Inter<TestGAGE> {
         else inter.setRisk_dependency("нет выраженных признаков зависимости");
     }
 
+    /**
+     * Получение результата интерпретации
+     */
     @Override
     public void getResult() {
         Alert result = new Alert(Alert.AlertType.INFORMATION);
@@ -80,6 +96,11 @@ public class InterTestGAGE extends Inter<TestGAGE> {
         result.show();
     }
 
+    /**
+     * Вставка интерпретации
+     *
+     * @param testGAGE Тест GAGE
+     */
     @Override
     public void insert(TestGAGE testGAGE) {
         calculate(testGAGE);
@@ -87,12 +108,22 @@ public class InterTestGAGE extends Inter<TestGAGE> {
         if (code != -1) inter.setIdInterpretationGAGE(code);
     }
 
+    /**
+     * Обновление интерпретации
+     *
+     * @param testGAGE Тест GAGE
+     */
     @Override
     public void update(TestGAGE testGAGE) {
         calculate(testGAGE);
         new InterpretationTestGAGETable().update(inter);
     }
 
+    /**
+     * Выбор интерпретации
+     *
+     * @param testGAGE Тест GAGE
+     */
     @Override
     public void select(TestGAGE testGAGE) {
         inter.setTest(testGAGE.getIdTestGAGE());
