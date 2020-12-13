@@ -39,8 +39,9 @@ public class UserListController {
 
     private FilteredList<User> filteredData;
 
-
-
+    /**
+     * Конструктор окна
+     */
     @FXML
     public void initialize() {
 
@@ -53,6 +54,11 @@ public class UserListController {
         login.setCellValueFactory(new PropertyValueFactory<>("username"));
         filteredData = new FilteredList<>(users, p -> true);
     }
+
+    /**
+     * функция поиска совпадений и перерисовки таблицы
+     * @param inputEvent - сгенерированное событие ввода
+     */
     @FXML
     public void find(Event inputEvent) {
         filteredData.setPredicate(myObject -> {
@@ -76,21 +82,42 @@ public class UserListController {
         table.setItems(sortedData);
     }
 
+    /**
+     * Переход на домашнюю страницу
+     *
+     * @param actionEvent - сгенерированное событие
+     * @throws IOException - исключения ввода/вывода
+     */
     @FXML
     private void toHome(ActionEvent actionEvent) throws IOException {
         Application.stage(getClass(), (Stage) search.getScene().getWindow(), "../../fxml/general.fxml", "Главная страница");
     }
 
+    /**
+     * Открытие окна с описанием компании
+     *
+     * @param actionEvent - сгенерированное событие
+     */
     @FXML
     private void aboutUs(ActionEvent actionEvent) {
         Alerts.aboutUs();
     }
 
+    /**
+     * Открытие окна с добавлением нового пользователя
+     *
+     * @param actionEvent - сгенерированное событие
+     */
     @FXML
     public void addNew(ActionEvent actionEvent) throws IOException {
         Application.stage(getClass(), (Stage) search.getScene().getWindow(), "../../fxml/addUser.fxml", "Добавление нового пользователя");
     }
 
+    /**
+     * Открытие окна с редактированием данных, существующего пользователя
+     *
+     * @param mouseEvent - сгенерированное событие мыши
+     */
     @FXML
     public void clickRow(MouseEvent mouseEvent) throws IOException {
         if (mouseEvent.getClickCount() == 2) //Проверка на двойной клик

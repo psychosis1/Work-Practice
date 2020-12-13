@@ -14,6 +14,12 @@ import java.util.logging.Logger;
 public class UserTable extends Database {
     private static final Logger log = Logger.getLogger(UserTable.class.getName());
 
+    /**
+     * Выбор пользователя из базы данных по логину
+     * @param username - логин
+     * @param password - пароль
+     * @return
+     */
     public int selectUser(String username, String password) {
 
         String sql = "SELECT * FROM User WHERE username = ?";
@@ -41,6 +47,10 @@ public class UserTable extends Database {
         return -1;
     }
 
+    /**
+     * Получение списка всех пользователй из бады данный
+     * @return лист со всеми пользователями
+     */
     public List<User> getUserList() {
         List<User> userList = new ArrayList<>();
         String query = "SELECT * FROM User";
@@ -64,6 +74,17 @@ public class UserTable extends Database {
         return userList;
     }
 
+    /**
+     * Добавление пользователя в БД
+     * @param username - логин
+     * @param password - пароль
+     * @param first_name - имя
+     * @param last_name - фамилия
+     * @param patronymic - отчество
+     * @param position - должность
+     * @param admin - является ли админом
+     * @return - true/false
+     */
     public boolean createNew(String username,
                              String password,
                              String first_name,
@@ -91,6 +112,11 @@ public class UserTable extends Database {
 
     }
 
+    /**
+     * удаление пользователя из БД
+     * @param username - логин
+     * @return - true/false
+     */
     public boolean deleteUser(String username){
         String sql = "DELETE FROM User WHERE username = ?";
         try (Connection conn = this.connect();
@@ -104,6 +130,13 @@ public class UserTable extends Database {
         }
     }
 
+    /**
+     * изменение значения поля в базе данных с пользователями
+     * @param username - логин
+     * @param field - название поля
+     * @param value - значение поля
+     * @return - true/false
+     */
     public boolean updateField(String username,String field, String value){
         String sql = "UPDATE User SET " + field + " = ? WHERE username = ?";
         try (Connection conn = this.connect();
@@ -118,7 +151,12 @@ public class UserTable extends Database {
         }
     }
 
-
+    /**
+     * изменение значения поля в базе данных с пользователями
+     * @param field - название поля
+     * @param value - значение
+     * @return
+     */
     public int update(String field, String value) {
         //создание sql запроса
         String sql = "UPDATE User SET " + field + " = ? WHERE username = ?";

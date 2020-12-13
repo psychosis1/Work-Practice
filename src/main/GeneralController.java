@@ -35,6 +35,9 @@ public class GeneralController {
 
     private FilteredList<Client> filteredData;
 
+    /**
+     * Конструктор окна
+     */
     @FXML
     public void initialize() {
         ObservableList<Client> clients = FXCollections.observableList(new ClientTable().selectClientsForGeneral());
@@ -46,6 +49,11 @@ public class GeneralController {
         filteredData = new FilteredList<>(clients, p -> true);
     }
 
+    /**
+     * Открытие окна с редактированием данных, существующего пользователя
+     *
+     * @param mouseEvent - сгенерированное событие мыши
+     */
     @FXML
     public void clickRow(MouseEvent mouseEvent) throws IOException {
         if (mouseEvent.getClickCount() == 2) //Проверка на двойной клик
@@ -55,6 +63,11 @@ public class GeneralController {
         }
     }
 
+    /**
+     * функция поиска совпадений и перерисовки таблицы
+     *
+     * @param inputEvent - сгенерированное событие ввода
+     */
     @FXML
     public void find(Event inputEvent) {
         filteredData.setPredicate(myObject -> {
@@ -73,28 +86,57 @@ public class GeneralController {
         table.setItems(sortedData);
     }
 
+    /**
+     * Разавторизация и открытие окна с авторизацией
+     *
+     * @param actionEvent - сгенерированное событие
+     * @throws IOException - исключения ввода/вывода
+     */
     @FXML
     private void logout(ActionEvent actionEvent) throws IOException {
         Application.logout(getClass(), (Stage) menu.getScene().getWindow());
     }
 
+    /**
+     * Открытие окна с редактированием данных текущего пользователя
+     *
+     * @param actionEvent - сгенерированное событие
+     * @throws IOException - исключения ввода/вывода
+     */
     @FXML
     private void toProfile(ActionEvent actionEvent) throws IOException {
         Application.stage(getClass(), (Stage) menu.getScene().getWindow(), "../fxml/profile.fxml", "Профиль");
     }
 
+    /**
+     * Открытие окна администрирования
+     *
+     * @param actionEvent - сгенерированное событие
+     * @throws IOException - исключения ввода/вывода
+     */
     @FXML
     private void toAdmin(ActionEvent actionEvent) throws IOException {
-        if(Current.USER.isAdmin())
-        Application.stage(getClass(), (Stage) menu.getScene().getWindow(), "../fxml/userList.fxml", "Администрирование");
-        else Alerts.warning("Недостаточно прав!","Данный аккаунт не имеет прав администратора.");
+        if (Current.USER.isAdmin())
+            Application.stage(getClass(), (Stage) menu.getScene().getWindow(), "../fxml/userList.fxml", "Администрирование");
+        else Alerts.warning("Недостаточно прав!", "Данный аккаунт не имеет прав администратора.");
     }
 
+    /**
+     * Открытие окна с описанием компании
+     *
+     * @param actionEvent - сгенерированное событие
+     */
     @FXML
     private void aboutUs(ActionEvent actionEvent) {
         Alerts.aboutUs();
     }
 
+    /**
+     * Открытие окна с добавлением клиента
+     *
+     * @param actionEvent - сгенерированное событие
+     * @throws IOException - исключения ввода/вывода
+     */
     @FXML
     private void toClient(ActionEvent actionEvent) throws IOException {
         Current.CLIENT = null;
