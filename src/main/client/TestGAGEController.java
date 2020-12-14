@@ -41,8 +41,11 @@ public class TestGAGEController {
 
     private final InterTestGAGE inter = new InterTestGAGE();
 
-    private final TestGAGETable table= new TestGAGETable();
+    private final TestGAGETable table = new TestGAGETable();
 
+    /**
+     * Инициализация окна
+     */
     @FXML
     public void initialize() {
         //установка попытки теста
@@ -61,6 +64,11 @@ public class TestGAGEController {
         testGAGENotNull();
     }
 
+    /**
+     * Установка заголовков разделов
+     *
+     * @param text Текст
+     */
     private void setTitleForSection(String text) {
         Label thirdPart = new Label(text);
         thirdPart.setFont(Font.font(16));
@@ -69,6 +77,9 @@ public class TestGAGEController {
         vBox.getChildren().add(thirdPart);
     }
 
+    /**
+     * Установка контроллеров
+     */
     private void setNodes() {
         for (FieldControlGAGE field : fields) {
 
@@ -105,6 +116,9 @@ public class TestGAGEController {
         }
     }
 
+    /**
+     * Тест GAGE не пустой
+     */
     private void testGAGENotNull() {
         if (table.selectTestGAGE(testGAGE) > 0) {
             for (FieldControlGAGE field : fields) {
@@ -132,6 +146,9 @@ public class TestGAGEController {
         }
     }
 
+    /**
+     * Выбор диагностики
+     */
     private void askAttempt() {
         ChoiceDialog<String> dialog = new ChoiceDialog<>("Первичная", "Вторичная");
         dialog.setTitle("Диагностика");
@@ -163,6 +180,9 @@ public class TestGAGEController {
         testGAGE.setClient(Current.CLIENT.getIdClient()); //установка клиента
     }
 
+    /**
+     * Установка полей
+     */
     private void setFields() {
         LinkedHashMap<String, Question> rusChoice = new LinkedHashMap<>();
         rusChoice.put("1. Злоупотребляли ли Вы алкоголем?", TestGAGEChoices.NOYES);
@@ -200,6 +220,11 @@ public class TestGAGEController {
 
     }
 
+    /**
+     * Добавление или изменение теста GAGE
+     *
+     * @param actionEvent Событие
+     */
     @FXML
     private void saveChanges(ActionEvent actionEvent) {
         if (save.getText().equals("Добавить")) {
@@ -220,6 +245,11 @@ public class TestGAGEController {
         }
     }
 
+    /**
+     * Сохранение теста GAGE
+     *
+     * @return Булевое значение
+     */
     private boolean saveInTestGAGE() {
         //Первые два вопроса обязательны
         if (fields.get(0).getToggleGroup().getSelectedToggle() != null && fields.get(1).getToggleGroup().getSelectedToggle() != null) {
@@ -242,10 +272,15 @@ public class TestGAGEController {
             return true;
 
         }
-        Alerts.warning( "Невозможно создать тест", "Нет ответа на 1 и 2 вопрос. Они обязательны.");
+        Alerts.warning("Невозможно создать тест", "Нет ответа на 1 и 2 вопрос. Они обязательны.");
         return false;
     }
 
+    /**
+     * Удаление теста GAGE
+     *
+     * @param actionEvent Событие
+     */
     @FXML
     private void delete(ActionEvent actionEvent) {
         if (testGAGE.getIdTestGAGE() > 0) {
@@ -254,9 +289,12 @@ public class TestGAGEController {
                 vBox.getChildren().clear();
                 again();
             }
-        } else Alerts.warning("Невозможно произвести удаление","Тест не был создан, чтобы его удалить.");
+        } else Alerts.warning("Невозможно произвести удаление", "Тест не был создан, чтобы его удалить.");
     }
 
+    /**
+     * После удаления
+     */
     private void again() {
         //установка попытки теста
         askAttempt();
@@ -265,6 +303,11 @@ public class TestGAGEController {
         testGAGENotNull();
     }
 
+    /**
+     * Получение интерпретации
+     *
+     * @param actionEvent Событие
+     */
     @FXML
     private void getResult(ActionEvent actionEvent) {
         inter.getResult();

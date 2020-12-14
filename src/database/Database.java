@@ -9,6 +9,12 @@ public class Database {
 
     private MysqlDataSource source;
 
+    /**
+     * Подключение к БД
+     *
+     * @return Связь с БД
+     * @throws SQLException Ошибка подключения
+     */
     public Connection connect() throws SQLException {
         if (source == null) {
             source = new MysqlDataSource();

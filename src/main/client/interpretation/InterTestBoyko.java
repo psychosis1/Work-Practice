@@ -18,6 +18,11 @@ import java.util.List;
 public class InterTestBoyko extends Inter<TestBoyko> {
     private final InterpretationTestBoyko inter = new InterpretationTestBoyko();
 
+    /**
+     * Подсчет баллов
+     *
+     * @param test Тест Бойко
+     */
     @Override
     public void calculate(TestBoyko test) {
         testAndDate(test.getIdTestBoyko()); //установка id теста и текущего времени
@@ -47,12 +52,20 @@ public class InterTestBoyko extends Inter<TestBoyko> {
 
     }
 
+    /**
+     * Устновка id теста и текущего времени
+     *
+     * @param id id теста Бойко
+     */
     @Override
     public void testAndDate(int id) {
         inter.setTest(id);
         inter.setDate(LocalDateTime.now());
     }
 
+    /**
+     * Получение результата интерпретации
+     */
     @Override
     public void getResult() {
         Alert result = new Alert(Alert.AlertType.INFORMATION);
@@ -104,6 +117,11 @@ public class InterTestBoyko extends Inter<TestBoyko> {
         result.show();
     }
 
+    /**
+     * Вставка нтерпретации Бойко
+     *
+     * @param test Тест Бойко
+     */
     @Override
     public void insert(TestBoyko test) {
         calculate(test);
@@ -111,12 +129,22 @@ public class InterTestBoyko extends Inter<TestBoyko> {
         if (code != -1) inter.setIdInterpretationBoyko(code);
     }
 
+    /**
+     * Обновление нтерпретации Бойко
+     *
+     * @param test Тест Бойко
+     */
     @Override
     public void update(TestBoyko test) {
         calculate(test);
         new InterpretationTestBoykoTable().update(inter);
     }
 
+    /**
+     * Выборка нтерпретации Бойко
+     *
+     * @param test Тест Бойко
+     */
     @Override
     public void select(TestBoyko test) {
         inter.setTest(test.getIdTestBoyko());

@@ -12,6 +12,9 @@ import javafx.scene.layout.Priority;
 public class PasswordDialog extends Dialog<String> {
     private final PasswordField passwordField;
 
+    /**
+     * Создание касмомного диалога для ввода пароля
+     */
     public PasswordDialog() {
 
         ButtonType passwordButtonType = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
@@ -38,6 +41,10 @@ public class PasswordDialog extends Dialog<String> {
         });
     }
 
+    /**
+     * Получение пароля
+     * @return Пароль
+     */
     public PasswordField getPasswordField() {
         return passwordField;
     }

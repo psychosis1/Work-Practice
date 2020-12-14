@@ -15,22 +15,47 @@ public class FieldControl {
         this.choices = choices;
     }
 
+    /**
+     * Получение имени поля
+     *
+     * @return имя поля
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Получение русского названия поля
+     *
+     * @return Русское название
+     */
     public String getRusName() {
         return rusName;
     }
 
+    /**
+     * Получение выбора поля
+     *
+     * @return Выбор поля
+     */
     public ObservableList<String> getChoices() {
         return choices;
     }
 
+    /**
+     * Получение конроллера
+     *
+     * @return Конроллер
+     */
     public Control getControl() {
         return control;
     }
 
+    /**
+     * Установка конроллера
+     *
+     * @param control Конроллер
+     */
     public void setControl(Control control) {
         this.control = control;
     }

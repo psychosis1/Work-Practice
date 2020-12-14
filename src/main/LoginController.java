@@ -21,6 +21,12 @@ public class LoginController {
     @FXML
     private Button enter;
 
+    /**
+     * Вход в аккаунт
+     *
+     * @param actionEvent Событие
+     * @throws IOException Ошибка входа
+     */
     @FXML
     private void login(ActionEvent actionEvent) throws IOException {
         if (new UserTable().selectUser(username.getText(), password.getText()) == 0) {
@@ -31,6 +37,9 @@ public class LoginController {
         }
     }
 
+    /**
+     * Сохранение пользователя
+     */
     private void saveUser() {
         try {
             User.save("user.dat", Current.USER);

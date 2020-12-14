@@ -6,6 +6,12 @@ import javafx.stage.Stage;
 import properties.Properties;
 
 public class Alerts {
+    /**
+     * Предупреждение
+     *
+     * @param header  Заголовок
+     * @param content Контент
+     */
     public static void warning(String header, String content) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Предупреждение");
@@ -16,6 +22,13 @@ public class Alerts {
         alert.show();
     }
 
+    /**
+     * Ошибка
+     *
+     * @param header  Заголовок
+     * @param content Контент
+     * @param height  Высота
+     */
     public static void error(String header, String content, double height) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Ошибка");
@@ -26,15 +39,34 @@ public class Alerts {
         alert.show();
     }
 
+    /**
+     * Ошибка
+     *
+     * @param header  Заголовок
+     * @param content Контент
+     */
     public static void error(String header, String content) {
         error(header, content, 0);
     }
 
+    /**
+     * Установка иконки
+     *
+     * @param dialog Диалоговое окно
+     */
     public static void setIcon(Dialog<?> dialog) {
         Stage stage = (Stage) dialog.getDialogPane().getScene().getWindow();
         stage.getIcons().add(Properties.ICON); // иконка
     }
 
+    /**
+     * Информация
+     *
+     * @param title   Заглавие
+     * @param header  Заголовок
+     * @param content Контент
+     * @param height  Высота
+     */
     public static void info(String title, String header, String content, double height) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
@@ -45,10 +77,20 @@ public class Alerts {
         alert.show();
     }
 
+    /**
+     * Информация
+     *
+     * @param title   Заглавие
+     * @param header  Заголовок
+     * @param content Контент
+     */
     public static void info(String title, String header, String content) {
         info(title, header, content, 0);
     }
 
+    /**
+     * Информация о нас
+     */
     public static void aboutUs() {
         info("О нас", "АИС \"КЦСОН Красносельского района\"", "Автоматизированная информационная система, предоставляющая функциональные возможности " +
                 "хранения, обработки и анализа клиентов социального центра." + "\n\n\n" +

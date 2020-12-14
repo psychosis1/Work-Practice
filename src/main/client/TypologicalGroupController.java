@@ -32,6 +32,9 @@ public class TypologicalGroupController {
 
     private final TestBoykoTable boykoTable = new TestBoykoTable();
 
+    /**
+     * Инициализация окна
+     */
     @FXML
     public void initialize() {
         askAttempt(); //установка диагностики
@@ -39,6 +42,9 @@ public class TypologicalGroupController {
         select();
     }
 
+    /**
+     * Выбор диагностики
+     */
     private void askAttempt() {
         ChoiceDialog<String> dialog = new ChoiceDialog<>("Первичная", "Вторичная");
         dialog.setTitle("Диагностика");
@@ -76,6 +82,11 @@ public class TypologicalGroupController {
         group.setClient(Current.CLIENT.getIdClient());
     }
 
+    /**
+     * Выбор тестов
+     *
+     * @return Булевое значение
+     */
     private boolean selectTests() {
         if (boykoTable.selectTestBoyko(testBoyko) > 0 && gageTable.selectTestGAGE(testGAGE) > 0) {
             group.setTest_boyko(testBoyko.getIdTestBoyko());
@@ -85,6 +96,11 @@ public class TypologicalGroupController {
         return false;
     }
 
+    /**
+     * Установка группы
+     *
+     * @return Булевое значение
+     */
     private boolean setGroup() {
         if (selectTests()) {
 
@@ -140,12 +156,18 @@ public class TypologicalGroupController {
         }
     }
 
+    /**
+     * Выбор группы
+     */
     private void select() {
         if (table.select(group, testBoyko.getAttempt()))
             update();
         else insert();
     }
 
+    /**
+     * Вставка группы
+     */
     private void insert() {
         if (setGroup()) {
             table.insert(group);
@@ -153,6 +175,9 @@ public class TypologicalGroupController {
         }
     }
 
+    /**
+     * Обновление группы
+     */
     private void update() {
         if (setGroup()) {
             table.update(group);
@@ -160,6 +185,9 @@ public class TypologicalGroupController {
         }
     }
 
+    /**
+     * Получение текста
+     */
     private void getText() {
         switch (group.getGroup()) {
             case 0 -> {

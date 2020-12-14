@@ -12,11 +12,23 @@ import java.util.logging.Logger;
 public class Main extends Application {
     private static final Logger log = Logger.getLogger(Main.class.getName());
 
+    /**
+     * Начало приложения
+     *
+     * @param primaryStage Начальная сцена
+     * @throws Exception Ошибка
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
         loadUser(primaryStage);
     }
 
+    /**
+     * Загрузка пользователя
+     *
+     * @param stage Сцена
+     * @throws IOException Ошибка загрузки пользователя
+     */
     public void loadUser(Stage stage) throws IOException {
         try {
             Current.USER = User.load("user.dat");

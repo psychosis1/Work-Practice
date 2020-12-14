@@ -365,6 +365,7 @@ title __ENTITY's Class Diagram__\n
     class entity.User {
         - admin : boolean
         - first_name : String
+        - fullName : String
         - last_name : String
         - password : String
         - patronymic : String
@@ -373,6 +374,7 @@ title __ENTITY's Class Diagram__\n
         + User()
         + User()
         + getFirst_name()
+        + getFullName()
         + getLast_name()
         + getPassword()
         + getPatronymic()
@@ -384,12 +386,14 @@ title __ENTITY's Class Diagram__\n
         {static} + save()
         + setAdmin()
         + setFirst_name()
+        + setFullName()
         + setLast_name()
         + setPassword()
         + setPatronymic()
         + setPosition()
         + setUsername()
         + writeExternal()
+        - checkNull()
     }
   }
   

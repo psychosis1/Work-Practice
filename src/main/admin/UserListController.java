@@ -104,6 +104,28 @@ public class UserListController {
     }
 
     /**
+     * Разавторизация и открытие окна с авторизацией
+     *
+     * @param actionEvent - сгенерированное событие
+     * @throws IOException - исключения ввода/вывода
+     */
+    @FXML
+    private void logout(ActionEvent actionEvent) throws IOException {
+        Application.logout(getClass(), (Stage) search.getScene().getWindow(),"../../fxml/login.fxml");
+    }
+
+    /**
+     * Открытие окна с редактированием данных текущего пользователя
+     *
+     * @param actionEvent - сгенерированное событие
+     * @throws IOException - исключения ввода/вывода
+     */
+    @FXML
+    private void toProfile(ActionEvent actionEvent) throws IOException {
+        Application.stage(getClass(), (Stage) search.getScene().getWindow(), "../../fxml/profile.fxml", "Профиль");
+    }
+
+    /**
      * Открытие окна с добавлением нового пользователя
      *
      * @param actionEvent - сгенерированное событие

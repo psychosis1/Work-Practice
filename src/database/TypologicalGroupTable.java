@@ -9,6 +9,12 @@ import java.util.logging.Logger;
 public class TypologicalGroupTable extends Database {
     private static final Logger log = Logger.getLogger(TypologicalGroup.class.getName());
 
+    /**
+     * Вставка типологической группы
+     *
+     * @param group Типологическая группа
+     * @return Код операции
+     */
     public int insert(TypologicalGroup group) {
         //создание sql запроса
         String sql = "INSERT INTO TypologicalGroup (test_boyko, test_gage, client, `group`, subgroup)" +
@@ -35,6 +41,11 @@ public class TypologicalGroupTable extends Database {
         return -1;
     }
 
+    /**
+     * Обновление типологической группы
+     *
+     * @param group Типологическая группа
+     */
     public void update(TypologicalGroup group) {
         //создание sql запроса
         String sql = "UPDATE TypologicalGroup SET test_boyko = ?, test_gage = ?, `group` = ?, subgroup = ? WHERE idTypologicalGroup = ?";
@@ -53,7 +64,14 @@ public class TypologicalGroupTable extends Database {
         }
     }
 
-    public boolean select(TypologicalGroup group,int attempt) {
+    /**
+     * Выбор типологической группы
+     *
+     * @param group   Типологическая группа
+     * @param attempt Диагностика
+     * @return Булевое значение
+     */
+    public boolean select(TypologicalGroup group, int attempt) {
         String sql = "select * from typologicalgroup where test_gage = (select idTestGAGE from testgage where testgage.client=? && attempt=?) && test_boyko = (select idTestBoyko from testboyko where testboyko.client = ? && attempt=?)";
 
         try (Connection conn = this.connect();

@@ -5,6 +5,7 @@ title __PROPERTIES's Class Diagram__\n
   namespace properties {
     class properties.Current {
         {static} + CLIENT : Client
+        {static} + REFACTOR_USER : User
         {static} + USER : User
         - Current()
     }

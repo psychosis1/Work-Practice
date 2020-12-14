@@ -41,6 +41,9 @@ public class TestBoykoController {
 
     private final TestBoykoTable table = new TestBoykoTable();
 
+    /**
+     * Инициализация окна
+     */
     @FXML
     public void initialize() {
         //установка попытки теста
@@ -59,6 +62,9 @@ public class TestBoykoController {
         testBoykoNotNull();
     }
 
+    /**
+     * Установка контроллеров
+     */
     private void setNodes() {
         for (FieldControlBoyko field : fields) {
 
@@ -84,6 +90,9 @@ public class TestBoykoController {
         }
     }
 
+    /**
+     * Тест Бойко не пустой
+     */
     private void testBoykoNotNull() {
         if (table.selectTestBoyko(testBoyko) > 0) {
             for (FieldControlBoyko field : fields) {
@@ -106,6 +115,9 @@ public class TestBoykoController {
         }
     }
 
+    /**
+     * Выбор диагностики
+     */
     private void askAttempt() {
         ChoiceDialog<String> dialog = new ChoiceDialog<>("Первичная", "Вторичная");
         dialog.setTitle("Диагностика");
@@ -137,6 +149,9 @@ public class TestBoykoController {
         testBoyko.setClient(Current.CLIENT.getIdClient()); //установка клиента
     }
 
+    /**
+     * Установка полей
+     */
     private void setFields() {
         LinkedHashMap<String, List<String>> rusChoice = new LinkedHashMap<>();
         rusChoice.put("1. Агрессивность/аутоагрессивность", TestBoykoChoices.AGGRESS);
@@ -161,7 +176,11 @@ public class TestBoykoController {
 
     }
 
-
+    /**
+     * Добавление или изменение теста Бойко
+     *
+     * @param actionEvent Событие
+     */
     @FXML
     private void saveChanges(ActionEvent actionEvent) {
         if (save.getText().equals("Добавить")) {
@@ -182,7 +201,11 @@ public class TestBoykoController {
         }
     }
 
-
+    /**
+     * Сохранение теста Бойко
+     *
+     * @return Булевое значение
+     */
     private boolean saveInTestBoyko() {
         //Все вопросы обязательны
         for (FieldControlBoyko check : fields) {
@@ -205,6 +228,11 @@ public class TestBoykoController {
         return true;
     }
 
+    /**
+     * Удаление теста Бойко
+     *
+     * @param actionEvent Событие
+     */
     @FXML
     private void delete(ActionEvent actionEvent) {
         if (testBoyko.getIdTestBoyko() > 0) {
@@ -216,6 +244,9 @@ public class TestBoykoController {
         } else Alerts.warning("Невозможно произвести удаление", "Тест не был создан, чтобы его удалить.");
     }
 
+    /**
+     * После удаления
+     */
     private void again() {
         //установка попытки теста
         askAttempt();
@@ -224,6 +255,11 @@ public class TestBoykoController {
         testBoykoNotNull();
     }
 
+    /**
+     * Получение интерпретации
+     *
+     * @param actionEvent Событие
+     */
     @FXML
     private void getResult(ActionEvent actionEvent) {
         inter.getResult();

@@ -29,11 +29,19 @@ public class ClientController {
 
     private List<Label> labels;
 
+    /**
+     * Инициализация окна
+     */
     @FXML
     public void initialize() {
         labels = new ArrayList<>(Arrays.asList(clientForm, testBoyko, testGAGE, testSOCRATES, typologicalGroups));
     }
 
+    /**
+     * Установка цвета для выбранного в списке пункта
+     *
+     * @param mouseEvent Движение мыши
+     */
     public void setColorForLabel(MouseEvent mouseEvent) {
         Label labelClicked = (Label) mouseEvent.getSource();
         for (Label label : labels) {
@@ -44,6 +52,11 @@ public class ClientController {
         }
     }
 
+    /**
+     * Обновление рабочей области
+     *
+     * @param pane Рабочая область
+     */
     public void updateWorkArea(Pane pane) {
         if (workArea.getChildren().size() > 0)
             workArea.getChildren().remove(0);
@@ -56,12 +69,24 @@ public class ClientController {
         pane.setPrefHeight(160);
     }
 
+    /**
+     * Переход к анкете
+     *
+     * @param mouseEvent Движение мыши
+     * @throws IOException Ошибка перехода
+     */
     @FXML
     private void toClientForm(MouseEvent mouseEvent) throws IOException {
         setColorForLabel(mouseEvent);
         updateWorkArea(FXMLLoader.load(getClass().getResource("../../fxml/clientForm.fxml")));
     }
 
+    /**
+     * Переход к тесту Бойко
+     *
+     * @param mouseEvent Двежение мыши
+     * @throws IOException Ошибка перехода
+     */
     @FXML
     private void toTestBoyko(MouseEvent mouseEvent) throws IOException {
         if (Current.CLIENT != null) {
@@ -70,6 +95,12 @@ public class ClientController {
         }
     }
 
+    /**
+     * Переход к тесту GAGE
+     *
+     * @param mouseEvent Двежение мыши
+     * @throws IOException Ошибка перехода
+     */
     @FXML
     private void toTestGAGE(MouseEvent mouseEvent) throws IOException {
         if (Current.CLIENT != null) {
@@ -78,6 +109,12 @@ public class ClientController {
         }
     }
 
+    /**
+     * Переход к типологической группе
+     *
+     * @param mouseEvent Двежение мыши
+     * @throws IOException Ошибка перехода
+     */
     @FXML
     private void toTypologicalGroups(MouseEvent mouseEvent) throws IOException {
         if (Current.CLIENT != null) {
@@ -86,29 +123,58 @@ public class ClientController {
         }
     }
 
+    /**
+     * Выход из аккаунта
+     *
+     * @param actionEvent Событие
+     * @throws IOException Ошибка перехода
+     */
     @FXML
     private void logout(ActionEvent actionEvent) throws IOException {
-        Application.logout(getClass(), (Stage) menu.getScene().getWindow());
+        Application.logout(getClass(), (Stage) menu.getScene().getWindow(), "../../fxml/login.fxml");
     }
 
+    /**
+     * Переход на главную страницу
+     *
+     * @param actionEvent Событие
+     * @throws IOException Ошибка перехода
+     */
     @FXML
     private void toHome(ActionEvent actionEvent) throws IOException {
         Application.stage(getClass(), (Stage) menu.getScene().getWindow(), "../../fxml/general.fxml", "Главная страница");
     }
 
+    /**
+     * Информация о нас
+     *
+     * @param actionEvent Событие
+     */
     @FXML
     private void aboutUs(ActionEvent actionEvent) {
         Alerts.aboutUs();
     }
 
+    /**
+     * Перерход к модулю администрирования
+     *
+     * @param actionEvent Событие
+     * @throws IOException Ошибка перехода
+     */
     @FXML
     private void toAdmin(ActionEvent actionEvent) throws IOException {
-        if(Current.USER.isAdmin())
+        if (Current.USER.isAdmin())
             Application.stage(getClass(), (Stage) menu.getScene().getWindow(), "../fxml/userList.fxml", "Администрирование");
-        else Alerts.warning("Недостаточно прав!","Данный аккаунт не имеет прав администратора.");
+        else Alerts.warning("Недостаточно прав!", "Данный аккаунт не имеет прав администратора.");
 
     }
 
+    /**
+     * Переход к профилю пользователя
+     *
+     * @param actionEvent Событие
+     * @throws IOException Ошибка перехода
+     */
     @FXML
     private void toProfile(ActionEvent actionEvent) throws IOException {
         Application.stage(getClass(), (Stage) menu.getScene().getWindow(), "../../fxml/profile.fxml", "Профиль");

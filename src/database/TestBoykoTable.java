@@ -7,9 +7,15 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class TestBoykoTable extends Database{
+public class TestBoykoTable extends Database {
     private static final Logger log = Logger.getLogger(TestGAGETable.class.getName());
 
+    /**
+     * Вставка теста Бойко
+     *
+     * @param testBoyko Тест Бойко
+     * @return Код операции
+     */
     public int insert(TestBoyko testBoyko) {
         List<String> names = TestBoyko.getFieldsNames();
         names.remove(0); //удаление из списка имен idTestBoyko
@@ -46,6 +52,11 @@ public class TestBoykoTable extends Database{
         return -1;
     }
 
+    /**
+     * Обновление теста Бойко
+     *
+     * @param testBoyko Тест Бойко
+     */
     public void update(TestBoyko testBoyko) {
         List<String> names = TestBoyko.getFieldsNames();
         names.remove(0); //удаление из списка имен idTestBoyko
@@ -74,6 +85,12 @@ public class TestBoykoTable extends Database{
         }
     }
 
+    /**
+     * Удаление теста Бойко
+     *
+     * @param testBoyko Тест Бойко
+     * @return Код опреации
+     */
     public int delete(TestBoyko testBoyko) {
         //создание sql запроса
         String sql = "DELETE FROM TestBoyko WHERE idTestBoyko = ?";
@@ -89,6 +106,12 @@ public class TestBoykoTable extends Database{
         return 0;
     }
 
+    /**
+     * Выбор теста Бойко
+     *
+     * @param testBoyko Тест Бойко
+     * @return Код операции
+     */
     public int selectTestBoyko(TestBoyko testBoyko) {
         String sql = "SELECT * FROM TestBoyko WHERE client = ? AND attempt = ?";
 
@@ -100,8 +123,8 @@ public class TestBoykoTable extends Database{
             if (!rs.next()) //пустая выборка
                 return 0;
             ResultSetMetaData rsmd = rs.getMetaData();
-            for (int i=1;i<=rsmd.getColumnCount();i++) {
-                testBoyko.setField(rsmd.getColumnName(i),rs.getObject(i));
+            for (int i = 1; i <= rsmd.getColumnCount(); i++) {
+                testBoyko.setField(rsmd.getColumnName(i), rs.getObject(i));
             }
 
         } catch (SQLException e) {
