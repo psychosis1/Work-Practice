@@ -118,7 +118,7 @@ public class RefactorUserController {
             if (new UserTable().updateField(Current.REFACTOR_USER.getUsername(), "username", username.getText())) {
                 Alerts.info("Информация", "Успешно!", "Значение логина изменено.");
                 Current.REFACTOR_USER.setUsername(username.getText());
-                Current.USER.setUsername(username.getText());
+//                Current.USER.setUsername(username.getText());
             } else Alerts.warning("Изменение не удалось!", "Что-то пошло не так. Возможно такой логин существует.");
         } else
             Alerts.warning("Не заполнено или заполнено неправильно поле!", "Логин должен включать как миниму 3 знака. " +
