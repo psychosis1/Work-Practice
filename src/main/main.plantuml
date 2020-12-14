@@ -92,6 +92,7 @@ title __MAIN's Class Diagram__\n
         - changeNotPassword()
         - changePassword()
         - logout()
+        - save()
         - setFirstName()
         - setLastName()
         - setPassword()

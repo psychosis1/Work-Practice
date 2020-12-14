@@ -1,6 +1,7 @@
 package main;
 
 import database.UserTable;
+import entity.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -47,7 +48,7 @@ public class ProfileController {
     /**
      * Смена данных кроме пароля
      *
-     * @param header Заголовок
+     * @param header  Заголовок
      * @param content Контент
      */
     private void changeNotPassword(String header, String content) {
@@ -90,6 +91,7 @@ public class ProfileController {
                 if (table.update("username", value) != -1) {
                     Current.USER.setUsername(value);
                     username.setText(value);
+                    save();
                 } else Alerts.error("Ошибка смены логина", "Такой логин уже существует.");
             } else Alerts.error("Ошибка смены логина", "Логин должен включать как миниму 3 знака. " +
                     "Может состоять из цифр, букв, знаков: - _ .\nТакже не должен содержать пробелы и должен начинаться с буквы.", 400);
@@ -118,7 +120,10 @@ public class ProfileController {
             changePassword();
             if (!value.isEmpty()) {
                 if (passwordValue()) {
-                    if (table.update("password", value) != -1) Current.USER.setPassword(value);
+                    if (table.update("password", value) != -1) {
+                        Current.USER.setPassword(value);
+                        save();
+                    }
                 } else Alerts.error("Ошибка смены пароля", "Пароль должен включать как миниму: 8 знаков," +
                         " 1 большую букву, 1 маленькую букву, 1 цифру.\nТакже не должен содержать пробелы", 400);
             }
@@ -146,6 +151,7 @@ public class ProfileController {
             if (table.update("first_name", value) != -1) {
                 Current.USER.setFirst_name(value);
                 firstName.setText(value);
+                save();
             }
         }
     }
@@ -162,6 +168,7 @@ public class ProfileController {
             if (table.update("last_name", value) != -1) {
                 Current.USER.setLast_name(value);
                 lastName.setText(value);
+                save();
             }
         }
     }
@@ -178,6 +185,7 @@ public class ProfileController {
             if (table.update("patronymic", value) != -1) {
                 Current.USER.setPatronymic(value);
                 patronymic.setText(value);
+                save();
             }
         }
     }
@@ -194,7 +202,19 @@ public class ProfileController {
             if (table.update("position", value) != -1) {
                 Current.USER.setPosition(value);
                 position.setText(value);
+                save();
             }
+        }
+    }
+
+    /**
+     * Сохранение пользователя
+     */
+    private void save() {
+        try {
+            User.save("user.dat", Current.USER);
+        } catch (IOException error) {
+            error.printStackTrace();
         }
     }
 
