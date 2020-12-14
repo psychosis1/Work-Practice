@@ -147,7 +147,7 @@ public class UserListController {
             if(!table.getSelectionModel().getSelectedItem().getUsername().equals(Current.USER.getUsername())){
             Current.REFACTOR_USER = table.getSelectionModel().getSelectedItem();
             Application.stage(getClass(), (Stage) search.getScene().getWindow(), "../../fxml/refactorUser.fxml", "Работа с пользователем");
-            }else Alerts.warning("Не удалось открыть!", "Текущий аккаунт можно редактировать в профиле.");
+            }else Alerts.warning("Не удалось открыть!", "Текущий аккаунт можно редактировать только в профиле.");
         }
     }
 }
