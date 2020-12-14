@@ -262,6 +262,7 @@ public class TestBoykoController {
      */
     @FXML
     private void getResult(ActionEvent actionEvent) {
+        saveChanges(actionEvent);
         inter.getResult();
     }
 
