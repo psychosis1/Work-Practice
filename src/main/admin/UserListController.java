@@ -122,8 +122,10 @@ public class UserListController {
     public void clickRow(MouseEvent mouseEvent) throws IOException {
         if (mouseEvent.getClickCount() == 2) //Проверка на двойной клик
         {
+            if(!table.getSelectionModel().getSelectedItem().getUsername().equals(Current.USER.getUsername())){
             Current.REFACTOR_USER = table.getSelectionModel().getSelectedItem();
             Application.stage(getClass(), (Stage) search.getScene().getWindow(), "../../fxml/refactorUser.fxml", "Работа с пользователем");
+            }else Alerts.warning("Не удалось открыть!", "Текущий аккаунт можно редактировать в профиле.");
         }
     }
 }
