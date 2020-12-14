@@ -164,7 +164,7 @@ public class ClientController {
     @FXML
     private void toAdmin(ActionEvent actionEvent) throws IOException {
         if (Current.USER.isAdmin())
-            Application.stage(getClass(), (Stage) menu.getScene().getWindow(), "../fxml/userList.fxml", "Администрирование");
+            Application.stage(getClass(), (Stage) menu.getScene().getWindow(), "../../fxml/userList.fxml", "Администрирование");
         else Alerts.warning("Недостаточно прав!", "Данный аккаунт не имеет прав администратора.");
 
     }

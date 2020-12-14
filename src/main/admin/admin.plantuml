@@ -70,7 +70,9 @@ title __ADMIN's Class Diagram__\n
           + find()
           + initialize()
           - aboutUs()
+          - logout()
           - toHome()
+          - toProfile()
       }
     }
   }

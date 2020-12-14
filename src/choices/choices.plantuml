@@ -96,7 +96,6 @@ title __CHOICES's Class Diagram__\n
         + getName()
         + getNames()
         + getValue()
-        + getValues()
         + toString()
     }
   }

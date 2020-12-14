@@ -18,7 +18,9 @@ title __MAIN's Class Diagram__\n
   namespace main {
     class main.Application {
         {static} + logout()
+        {static} + logout()
         {static} + stage()
+        {static} - setStageLogout()
     }
   }
   

@@ -47,8 +47,8 @@ public class ProfileController {
     /**
      * Смена данных кроме пароля
      *
-     * @param header
-     * @param content
+     * @param header Заголовок
+     * @param content Контент
      */
     private void changeNotPassword(String header, String content) {
         TextInputDialog dialog = new TextInputDialog();
