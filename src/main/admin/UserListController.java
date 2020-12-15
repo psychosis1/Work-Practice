@@ -5,6 +5,7 @@ import database.ClientTable;
 import database.UserTable;
 import entity.Client;
 import entity.User;
+import fxml.FXMLURL;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -90,7 +91,7 @@ public class UserListController {
      */
     @FXML
     private void toHome(ActionEvent actionEvent) throws IOException {
-        Application.stage(getClass(), (Stage) search.getScene().getWindow(), "../../fxml/general.fxml", "Главная страница");
+        Application.stage(getClass(), (Stage) search.getScene().getWindow(), new FXMLURL().getGeneral(), "Главная страница");
     }
 
     /**
@@ -111,7 +112,7 @@ public class UserListController {
      */
     @FXML
     private void logout(ActionEvent actionEvent) throws IOException {
-        Application.logout(getClass(), (Stage) search.getScene().getWindow(),"../../fxml/login.fxml");
+        Application.logout(getClass(), (Stage) search.getScene().getWindow(),new FXMLURL().getLogin());
     }
 
     /**
@@ -122,7 +123,7 @@ public class UserListController {
      */
     @FXML
     private void toProfile(ActionEvent actionEvent) throws IOException {
-        Application.stage(getClass(), (Stage) search.getScene().getWindow(), "../../fxml/profile.fxml", "Профиль");
+        Application.stage(getClass(), (Stage) search.getScene().getWindow(), new FXMLURL().getProfile(), "Профиль");
     }
 
     /**
@@ -132,7 +133,7 @@ public class UserListController {
      */
     @FXML
     public void addNew(ActionEvent actionEvent) throws IOException {
-        Application.stage(getClass(), (Stage) search.getScene().getWindow(), "../../fxml/addUser.fxml", "Добавление нового пользователя");
+        Application.stage(getClass(), (Stage) search.getScene().getWindow(), new FXMLURL().getAddUser(), "Добавление нового пользователя");
     }
 
     /**
@@ -146,7 +147,7 @@ public class UserListController {
         {
             if(!table.getSelectionModel().getSelectedItem().getUsername().equals(Current.USER.getUsername())){
             Current.REFACTOR_USER = table.getSelectionModel().getSelectedItem();
-            Application.stage(getClass(), (Stage) search.getScene().getWindow(), "../../fxml/refactorUser.fxml", "Работа с пользователем");
+            Application.stage(getClass(), (Stage) search.getScene().getWindow(), new FXMLURL().getRefactorUser(), "Работа с пользователем");
             }else Alerts.warning("Не удалось открыть!", "Текущий аккаунт можно редактировать только в профиле.");
         }
     }

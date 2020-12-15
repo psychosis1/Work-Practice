@@ -1,5 +1,6 @@
 package main;
 
+import fxml.FXMLURL;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,6 +14,7 @@ import properties.Properties;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 public class Application {
     /**
@@ -24,9 +26,10 @@ public class Application {
      * @param title  Заглавие
      * @throws IOException Ошибка установки сцены
      */
-    public static void stage(Class<?> object, Stage stage, String fxml, String title) throws IOException {
+    public static void stage(Class<?> object, Stage stage, URL fxml, String title) throws IOException {
+
         stage.close();
-        Parent root = FXMLLoader.load(object.getResource(fxml));
+        Parent root = FXMLLoader.load(fxml);
         stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.getIcons().add(Properties.ICON);
@@ -43,7 +46,7 @@ public class Application {
      * @throws IOException Ошибка выхода
      */
     public static void logout(Class<?> object, Stage stage) throws IOException {
-        setStageLogout(object, stage, "../fxml/login.fxml");
+        setStageLogout(object, stage, new FXMLURL().getLogin());
     }
 
     /**
@@ -53,7 +56,7 @@ public class Application {
      * @param path Путь до файла
      * @throws IOException Ошибка выхода
      */
-    private static void setStageLogout(Class<?> object, Stage stage, String path) throws IOException {
+    private static void setStageLogout(Class<?> object, Stage stage, URL path) throws IOException {
         Current.USER = null; //удаление текущего пользователя
         File file = new File("user.dat");
         if (file.delete())
@@ -71,7 +74,7 @@ public class Application {
      * @param path   Путь до файла
      * @throws IOException Ошибка выхода
      */
-    public static void logout(Class<?> object, Stage stage, String path) throws IOException {
+    public static void logout(Class<?> object, Stage stage, URL path) throws IOException {
         setStageLogout(object, stage, path);
     }
 }

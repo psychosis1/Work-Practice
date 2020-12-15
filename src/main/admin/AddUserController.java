@@ -3,6 +3,7 @@ package main.admin;
 import database.ClientTable;
 import database.UserTable;
 import entity.User;
+import fxml.FXMLURL;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -73,7 +74,7 @@ public class AddUserController {
      * @throws IOException - исключения ввода/вывода
      */
     public void toBack(ActionEvent actionEvent) throws IOException {
-        Application.stage(getClass(), (Stage) username.getScene().getWindow(), "../../fxml/userList.fxml", "Администрирование");
+        Application.stage(getClass(), (Stage) username.getScene().getWindow(), new FXMLURL().getUserList(), "Администрирование");
     }
 
     /**
@@ -83,7 +84,7 @@ public class AddUserController {
      * @throws IOException - исключения ввода/вывода
      */
     public void toHome(ActionEvent actionEvent) throws IOException {
-        Application.stage(getClass(), (Stage) username.getScene().getWindow(), "../../fxml/general.fxml", "Главная страница");
+        Application.stage(getClass(), (Stage) username.getScene().getWindow(), new FXMLURL().getGeneral(), "Главная страница");
     }
 
     /**
@@ -102,7 +103,7 @@ public class AddUserController {
      * @throws IOException - исключения ввода/вывода
      */
     public void cancel(ActionEvent actionEvent) throws IOException {
-        Application.stage(getClass(), (Stage) username.getScene().getWindow(), "../../fxml/userList.fxml", "Администрирование");
+        Application.stage(getClass(), (Stage) username.getScene().getWindow(), new FXMLURL().getUserList(), "Администрирование");
     }
 
     /**
@@ -126,7 +127,7 @@ public class AddUserController {
                     patronymic.getText(),
                     position.getText(),
                     root.getValue().equals("администратор"))) {
-                Application.stage(getClass(), (Stage) username.getScene().getWindow(), "../../fxml/userList.fxml", "Администрирование");
+                Application.stage(getClass(), (Stage) username.getScene().getWindow(), new FXMLURL().getUserList(), "Администрирование");
             } else {
                 Alerts.warning("Что-то пошло не так!", "Возможно пользователь с таким логином уже существует.");
             }

@@ -2,9 +2,11 @@ package properties;
 
 import javafx.scene.image.Image;
 
+
 public class Properties {
 
     public static final Image ICON = new Image("/resources/logo.png");
+
 
     // Настройки для подключения к БД
     public static final String HOST = "VH289.spaceweb.ru";

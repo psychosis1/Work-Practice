@@ -2,6 +2,7 @@ package main;
 
 import database.UserTable;
 import entity.User;
+import fxml.FXMLURL;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -238,7 +239,7 @@ public class ProfileController {
     @FXML
     private void toAdmin(ActionEvent actionEvent) throws IOException {
         if (Current.USER.isAdmin())
-            Application.stage(getClass(), (Stage) username.getScene().getWindow(), "../fxml/userList.fxml", "Администрирование");
+            Application.stage(getClass(), (Stage) username.getScene().getWindow(), new FXMLURL().getUserList(), "Администрирование");
         else Alerts.warning("Недостаточно прав!", "Данный аккаунт не имеет прав администратора.");
     }
 
@@ -260,6 +261,6 @@ public class ProfileController {
      */
     @FXML
     private void toHome(ActionEvent actionEvent) throws IOException {
-        Application.stage(getClass(), (Stage) username.getScene().getWindow(), "../fxml/general.fxml", "Главная страница");
+        Application.stage(getClass(), (Stage) username.getScene().getWindow(), new FXMLURL().getGeneral(), "Главная страница");
     }
 }

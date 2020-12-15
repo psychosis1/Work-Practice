@@ -2,6 +2,7 @@ package main;
 
 import database.ClientTable;
 import entity.Client;
+import fxml.FXMLURL;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -59,7 +60,7 @@ public class GeneralController {
         if (mouseEvent.getClickCount() == 2) //Проверка на двойной клик
         {
             Current.CLIENT = table.getSelectionModel().getSelectedItem();
-            Application.stage(getClass(), (Stage) menu.getScene().getWindow(), "../fxml/client.fxml", "Работа с клиентом");
+            Application.stage(getClass(), (Stage) menu.getScene().getWindow(), new FXMLURL().getClient(), "Работа с клиентом");
         }
     }
 
@@ -105,7 +106,7 @@ public class GeneralController {
      */
     @FXML
     private void toProfile(ActionEvent actionEvent) throws IOException {
-        Application.stage(getClass(), (Stage) menu.getScene().getWindow(), "../fxml/profile.fxml", "Профиль");
+        Application.stage(getClass(), (Stage) menu.getScene().getWindow(), new FXMLURL().getProfile(), "Профиль");
     }
 
     /**
@@ -117,7 +118,7 @@ public class GeneralController {
     @FXML
     private void toAdmin(ActionEvent actionEvent) throws IOException {
         if (Current.USER.isAdmin())
-            Application.stage(getClass(), (Stage) menu.getScene().getWindow(), "../fxml/userList.fxml", "Администрирование");
+            Application.stage(getClass(), (Stage) menu.getScene().getWindow(), new FXMLURL().getUserList(), "Администрирование");
         else Alerts.warning("Недостаточно прав!", "Данный аккаунт не имеет прав администратора.");
     }
 
@@ -140,6 +141,6 @@ public class GeneralController {
     @FXML
     private void toClient(ActionEvent actionEvent) throws IOException {
         Current.CLIENT = null;
-        Application.stage(getClass(), (Stage) menu.getScene().getWindow(), "../fxml/client.fxml", "Работа с клиентом");
+        Application.stage(getClass(), (Stage) menu.getScene().getWindow(), new FXMLURL().getClient(), "Работа с клиентом");
     }
 }

@@ -4,6 +4,7 @@ import choices.ClientChoices;
 import choices.FieldControl;
 import database.ClientTable;
 import entity.Client;
+import fxml.FXMLURL;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -265,7 +266,7 @@ public class ClientFormController {
     private void delete(ActionEvent actionEvent) throws IOException {
         if (Current.CLIENT != null) {
             if (table.delete() == 0) {
-                Application.stage(getClass(), (Stage) save.getScene().getWindow(), "../../fxml/general.fxml", "Главная страница");
+                Application.stage(getClass(), (Stage) save.getScene().getWindow(), new FXMLURL().getGeneral(), "Главная страница");
             }
         } else Alerts.warning("Невозможно произвести удаление", "Клиент не был создан, чтобы его удалить.");
     }

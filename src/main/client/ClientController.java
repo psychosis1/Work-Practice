@@ -1,5 +1,6 @@
 package main.client;
 
+import fxml.FXMLURL;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -78,7 +79,7 @@ public class ClientController {
     @FXML
     private void toClientForm(MouseEvent mouseEvent) throws IOException {
         setColorForLabel(mouseEvent);
-        updateWorkArea(FXMLLoader.load(getClass().getResource("../../fxml/clientForm.fxml")));
+        updateWorkArea(FXMLLoader.load(new FXMLURL().getClientForm()));
     }
 
     /**
@@ -91,7 +92,7 @@ public class ClientController {
     private void toTestBoyko(MouseEvent mouseEvent) throws IOException {
         if (Current.CLIENT != null) {
             setColorForLabel(mouseEvent);
-            updateWorkArea(FXMLLoader.load(getClass().getResource("../../fxml/testBoyko.fxml")));
+            updateWorkArea(FXMLLoader.load(new FXMLURL().getTestBoyko()));
         }
     }
 
@@ -105,7 +106,7 @@ public class ClientController {
     private void toTestGAGE(MouseEvent mouseEvent) throws IOException {
         if (Current.CLIENT != null) {
             setColorForLabel(mouseEvent);
-            updateWorkArea(FXMLLoader.load(getClass().getResource("../../fxml/testGAGE.fxml")));
+            updateWorkArea(FXMLLoader.load(new FXMLURL().getTestGAGE()));
         }
     }
 
@@ -119,7 +120,7 @@ public class ClientController {
     private void toTypologicalGroups(MouseEvent mouseEvent) throws IOException {
         if (Current.CLIENT != null) {
             setColorForLabel(mouseEvent);
-            updateWorkArea(FXMLLoader.load(getClass().getResource("../../fxml/typologicalGroup.fxml")));
+            updateWorkArea(FXMLLoader.load(new FXMLURL().getTypologicalGroup()));
         }
     }
 
@@ -131,7 +132,7 @@ public class ClientController {
      */
     @FXML
     private void logout(ActionEvent actionEvent) throws IOException {
-        Application.logout(getClass(), (Stage) menu.getScene().getWindow(), "../../fxml/login.fxml");
+        Application.logout(getClass(), (Stage) menu.getScene().getWindow(), new FXMLURL().getLogin());
     }
 
     /**
@@ -142,7 +143,7 @@ public class ClientController {
      */
     @FXML
     private void toHome(ActionEvent actionEvent) throws IOException {
-        Application.stage(getClass(), (Stage) menu.getScene().getWindow(), "../../fxml/general.fxml", "Главная страница");
+        Application.stage(getClass(), (Stage) menu.getScene().getWindow(), new FXMLURL().getGeneral(), "Главная страница");
     }
 
     /**
@@ -164,7 +165,7 @@ public class ClientController {
     @FXML
     private void toAdmin(ActionEvent actionEvent) throws IOException {
         if (Current.USER.isAdmin())
-            Application.stage(getClass(), (Stage) menu.getScene().getWindow(), "../../fxml/userList.fxml", "Администрирование");
+            Application.stage(getClass(), (Stage) menu.getScene().getWindow(), new FXMLURL().getUserList(), "Администрирование");
         else Alerts.warning("Недостаточно прав!", "Данный аккаунт не имеет прав администратора.");
 
     }
@@ -177,7 +178,7 @@ public class ClientController {
      */
     @FXML
     private void toProfile(ActionEvent actionEvent) throws IOException {
-        Application.stage(getClass(), (Stage) menu.getScene().getWindow(), "../../fxml/profile.fxml", "Профиль");
+        Application.stage(getClass(), (Stage) menu.getScene().getWindow(), new FXMLURL().getProfile(), "Профиль");
     }
 
 }
